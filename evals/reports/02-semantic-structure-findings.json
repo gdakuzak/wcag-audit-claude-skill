@@ -1,0 +1,328 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "fail"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "warning"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "na"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".fake-h1, .fake-h2, .fake-h3",
+      "description": "Visual headings are <div> elements with bold large font; they are not exposed as headings (should be <h1>-<h3>)."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".fake-nav",
+      "description": "Site navigation is a plain <div>, not <nav>; breadcrumb (.breadcrumb) is also not in a <nav aria-label=\"Breadcrumb\">."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": "table tr:first-child td",
+      "description": "Table header row uses <td> styled bold; no <th scope=\"col\">, so cells are not associated with headers."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".form-group input, .form-group textarea",
+      "description": "Form fields have no associated <label>; only placeholder text."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": "body > .container",
+      "description": "No <header>/<main>/<footer>-in-landmark structure beyond <footer>; no <main> landmark."
+    },
+    {
+      "sc": "1.3.2",
+      "status": "fail",
+      "element": ".reordered .item-1/.item-2/.item-3",
+      "description": "CSS order (3,1,2) shows Operable, Understandable, Perceivable while DOM/screen-reader order is Perceivable, Operable, Understandable."
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail",
+      "element": "input[type=text], input[type=email]",
+      "description": "Inputs collecting the user's name and email lack autocomplete=\"name\" and autocomplete=\"email\"."
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": "footer",
+      "description": "Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".form-group input, .form-group textarea",
+      "description": "Field border #cccccc on #fefefe = 1.59:1, below 3:1."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".toggle",
+      "description": "Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".toggle",
+      "description": "Toggle is a <div onclick> with no tabindex and no keydown handler; cannot be operated by keyboard."
+    },
+    {
+      "sc": "2.4.1",
+      "status": "fail",
+      "element": ".fake-nav",
+      "description": "No skip link, no <main>/<nav> landmarks and no real headings, so there is no mechanism to bypass the repeated navigation."
+    },
+    {
+      "sc": "2.4.2",
+      "status": "fail",
+      "element": "title",
+      "description": "Page title is \"Home\" while the content is the article \"Understanding Web Standards\"; title does not describe the page."
+    },
+    {
+      "sc": "2.4.4",
+      "status": "warning",
+      "element": "a[href=\"/standards\"], a[href=\"/guide\"]",
+      "description": "Link texts \"click here\" and \"Read more\" are generic; purpose only derivable from surrounding sentence. Verify / prefer descriptive link text."
+    },
+    {
+      "sc": "3.1.2",
+      "status": "fail",
+      "element": "p (French quotation)",
+      "description": "\"L'accessibilité n'est pas une option...\" is French inside a lang=\"en\" page without lang=\"fr\"."
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail",
+      "element": ".form-group input, .form-group textarea",
+      "description": "Placeholder-only labels (\"Your name\", \"Email address\", \"Your message\") disappear on input; no visible labels."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".toggle",
+      "description": "Custom switch has no role=\"switch\", no accessible name (adjacent span not associated) and no aria-checked; state change is not exposed."
+    }
+  ]
+}

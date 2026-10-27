@@ -8,12 +8,12 @@
 GROUND TRUTH - Known WCAG 2.2 AA failures in this page:
 1. SC 1.4.1 FAIL: Links in paragraph are distinguished only by color (#0066cc) — no underline or other non-color indicator
 2. SC 1.4.1 FAIL: Required fields indicated only by red color (#d32f2f) label — no text "(required)" or asterisk with legend
-3. SC 1.4.1 FAIL: Status indicators use only color (green/yellow/red dots) — no text labels or icons
-4. SC 1.4.1 FAIL: Chart legend uses only colored squares — no patterns, labels, or accessible alternative
+3. SC 1.4.1 PASS (corrected in v1.1): status dots are followed by text (Online/Away/Offline)
+4. SC 1.4.1 PASS (corrected in v1.1): each legend swatch has a text label
 5. SC 1.4.1 FAIL: Error state on input indicated only by red border — no icon or error text
 6. SC 1.4.3 FAIL: .success-text color #4caf50 on #ffffff = 3.03:1 (fails 4.5:1)
 7. SC 1.4.1 PASS: .badge uses both color AND text labels ("Active", "Pending") — should NOT be flagged for 1.4.1
-Total: 6 genuine failures, 1 should-pass item
+Total: 4 genuine failures, 3 should-pass items
 -->
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,7 +42,7 @@ Total: 6 genuine failures, 1 should-pass item
     border-color: #d32f2f;
   }
 
-  /* Status dots — FAIL: color only */
+  /* Status dots — PASS: text labels next to them */
   .status-list { list-style: none; margin: 16px 0; }
   .status-list li { display: flex; align-items: center; gap: 8px; padding: 8px 0; }
   .status-dot {
@@ -52,7 +52,7 @@ Total: 6 genuine failures, 1 should-pass item
   .status-dot.yellow { background: #ff9800; }
   .status-dot.red { background: #f44336; }
 
-  /* FAIL: chart legend with color squares only */
+  /* PASS: legend swatches have text labels */
   .chart-legend { display: flex; gap: 16px; margin: 16px 0; }
   .legend-item { display: flex; align-items: center; gap: 6px; }
   .legend-swatch { width: 16px; height: 16px; border-radius: 2px; }
@@ -80,7 +80,7 @@ Total: 6 genuine failures, 1 should-pass item
   </div>
 
   <h2>Team Members</h2>
-  <!-- FAIL: status dots are color-only -->
+  <!-- PASS: status dots have text labels -->
   <ul class="status-list">
     <li><span class="status-dot green"></span> Alice Johnson — Online</li>
     <li><span class="status-dot yellow"></span> Bob Smith — Away</li>
@@ -89,7 +89,7 @@ Total: 6 genuine failures, 1 should-pass item
   </ul>
 
   <h2>Budget Breakdown</h2>
-  <!-- FAIL: chart legend with color squares only -->
+  <!-- PASS: legend swatches have text labels -->
   <div class="chart-legend">
     <div class="legend-item"><div class="legend-swatch" style="background:#4285f4;"></div> Engineering</div>
     <div class="legend-item"><div class="legend-swatch" style="background:#ea4335;"></div> Marketing</div>

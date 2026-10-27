@@ -11,11 +11,11 @@ GROUND TRUTH - Known WCAG 2.2 AA failures in this page:
 3. SC 1.3.1 FAIL: Data table missing <th> elements and scope attributes
 4. SC 1.3.1 FAIL: Form inputs lack associated <label> elements (uses placeholder only)
 5. SC 1.3.2 FAIL: Visual order doesn't match DOM order (CSS order property on .reordered)
-6. SC 2.4.6 FAIL: Generic link text "Click here" and "Read more" without context
+6. SC 2.4.4 PASS (corrected in v1.1): "click here" / "Read more" get their purpose from the sentence they are in (fails only AAA 2.4.9)
 7. SC 3.1.2 FAIL: French quote paragraph missing lang="fr" attribute
 8. SC 1.3.1 FAIL: Breadcrumb not in <nav> with aria-label
 9. SC 4.1.2 FAIL: Custom toggle missing role, aria-checked, keyboard handling
-Total: 9 failures
+Total: 8 failures, 1 should-pass item
 -->
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -108,7 +108,7 @@ Total: 9 failures
     <tr><td>Container Queries</td><td>Yes</td><td>Yes</td><td>Partial</td></tr>
   </table>
 
-  <!-- Generic link text -->
+  <!-- PASS at AA: link purpose clear from sentence (2.4.4) -->
   <p>For more information about web standards, <a href="/standards">click here</a>.</p>
   <p>We have published a detailed accessibility guide. <a href="/guide">Read more</a></p>
 

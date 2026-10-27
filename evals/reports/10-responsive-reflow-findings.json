@@ -1,0 +1,274 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "warning"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "warning"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "na"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "na"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": ".watermark",
+      "description": "\"CONFIDENTIAL — Internal Use Only — Do Not Distribute\" #e8e8e8 on #ffffff at 0.8rem = 1.23:1 (needs 4.5:1). Suggested: #767676 or darker."
+    },
+    {
+      "sc": "1.4.4",
+      "status": "fail",
+      "element": ".hero-section",
+      "description": "height:400px with overflow:hidden; at 200% text size the h1 (2.5rem) and paragraph overflow and are clipped."
+    },
+    {
+      "sc": "1.4.4",
+      "status": "fail",
+      "element": ".code-block",
+      "description": "overflow:hidden + white-space:nowrap clips the JSON response; enlarged text hides even more content with no way to scroll."
+    },
+    {
+      "sc": "1.4.10",
+      "status": "fail",
+      "element": ".code-block",
+      "description": "Single nowrap line with overflow:hidden; at 320px most of the JSON is cut off and unreachable (content loss)."
+    },
+    {
+      "sc": "1.4.10",
+      "status": "fail",
+      "element": ".hero-section",
+      "description": "Fixed 400px height with overflow:hidden; at 320px width text wraps into more lines and is clipped."
+    },
+    {
+      "sc": "1.4.12",
+      "status": "fail",
+      "element": ".hero-section",
+      "description": "Fixed height + overflow:hidden clips hero text when line-height 1.5 / letter/word spacing overrides are applied."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "warning",
+      "element": ".table-wrapper",
+      "description": "Horizontally scrollable region (overflow-x:auto, table min-width 900px) has no tabindex=\"0\"/role/label; verify keyboard users can scroll it."
+    },
+    {
+      "sc": "2.4.5",
+      "status": "warning",
+      "element": "body",
+      "description": "No navigation, search or sitemap; verify at least two ways exist across the site."
+    }
+  ]
+}

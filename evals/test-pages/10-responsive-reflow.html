@@ -6,14 +6,14 @@
 <title>Responsive & Reflow Failures</title>
 <!--
 GROUND TRUTH - Known WCAG 2.2 AA failures in this page:
-1. SC 1.4.10 FAIL: .fixed-width-table has min-width:900px — forces horizontal scroll at 320px viewport
+1. SC 1.4.10 PASS (corrected in v1.1): .fixed-width-table scrolls inside .table-wrapper (overflow-x:auto); data tables are exempt
 2. SC 1.4.10 FAIL: .code-block has white-space:nowrap and overflow:hidden — clips content at narrow widths
-3. SC 1.4.4 FAIL: .fixed-text uses font-size in px with !important — blocks user text resizing
+3. SC 1.4.4 PASS (corrected in v1.1): .fixed-text 14px !important still scales with browser zoom
 4. SC 1.4.10 FAIL: .hero-section has fixed height of 400px — content overflows and clips at 200% zoom
 5. SC 1.4.12 FAIL: .tight-paragraph has line-height:1.0, letter-spacing:-0.5px — fails text spacing override
 6. SC 1.4.3 FAIL: .watermark text #e8e8e8 on #ffffff = 1.31:1 (fails 4.5:1)
 7. SC 1.4.10 PASS: .responsive-card uses max-width:100% and reflows correctly — should NOT be flagged
-Total: 6 genuine failures, 1 should-pass item
+Total: 4 genuine failures, 3 should-pass items
 -->
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +32,7 @@ Total: 6 genuine failures, 1 should-pass item
   .hero-section h1 { font-size: 2.5rem; }
   .hero-section p { font-size: 1.2rem; max-width: 500px; }
 
-  /* FAIL: fixed-width table forces horizontal scroll */
+  /* PASS: table scrolls in its own wrapper; data tables are exempt */
   .table-wrapper { overflow-x: auto; margin: 16px 0; }
   .fixed-width-table {
     min-width: 900px; width: 100%; border-collapse: collapse;
@@ -50,7 +50,7 @@ Total: 6 genuine failures, 1 should-pass item
     white-space: nowrap; overflow: hidden; margin: 16px 0;
   }
 
-  /* FAIL: fixed font size blocks resizing */
+  /* PASS: px font still scales with browser zoom */
   .fixed-text {
     font-size: 14px !important;
     line-height: 1.4;
@@ -90,7 +90,7 @@ Total: 6 genuine failures, 1 should-pass item
 
 <div class="container">
   <h2>Performance Data</h2>
-  <!-- FAIL: min-width table forces horizontal scroll -->
+  <!-- PASS: table scrolls in its own wrapper -->
   <div class="table-wrapper">
     <table class="fixed-width-table">
       <thead>
@@ -119,7 +119,7 @@ Total: 6 genuine failures, 1 should-pass item
   </div>
 
   <h2>Terms and Conditions</h2>
-  <!-- FAIL: fixed font size -->
+  <!-- PASS: px font still scales with browser zoom -->
   <div class="fixed-text">
     <p>By using this service, you agree to our terms of service. Your data is processed in accordance with our privacy policy. We reserve the right to update these terms at any time. Continued use of the service constitutes acceptance of any changes.</p>
   </div>

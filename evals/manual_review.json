@@ -1,0 +1,330 @@
+{
+  "02-semantic-structure": [
+    {
+      "sc": "1.3.1",
+      "element": "body > .container",
+      "verdict": "false_positive",
+      "note_en": "Landmarks are best practice; missing <main> is not a 1.3.1 failure on its own.",
+      "note_pt": "Landmarks são boa prática; a falta de <main> sozinha não reprova a 1.3.1."
+    },
+    {
+      "sc": "1.3.5",
+      "element": "input[type=text], input[type=email]",
+      "verdict": "genuine",
+      "note_en": "Inputs collecting the user's name and email lack autocomplete=\"name\" and autocomplete=\"email\".",
+      "note_pt": "Inputs collecting the user's name and email lack autocomplete=\"name\" and autocomplete=\"email\"."
+    },
+    {
+      "sc": "1.4.3",
+      "element": "footer",
+      "verdict": "genuine",
+      "note_en": "Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker.",
+      "note_pt": "Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".form-group input, .form-group textarea",
+      "verdict": "genuine",
+      "note_en": "Field border #cccccc on #fefefe = 1.59:1, below 3:1.",
+      "note_pt": "Field border #cccccc on #fefefe = 1.59:1, below 3:1."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".toggle",
+      "verdict": "genuine",
+      "note_en": "Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1.",
+      "note_pt": "Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1."
+    },
+    {
+      "sc": "2.1.1",
+      "element": ".toggle",
+      "verdict": "genuine",
+      "note_en": "Toggle is a <div onclick> with no tabindex and no keydown handler; cannot be operated by keyboard.",
+      "note_pt": "Toggle is a <div onclick> with no tabindex and no keydown handler; cannot be operated by keyboard."
+    },
+    {
+      "sc": "2.4.2",
+      "element": "title",
+      "verdict": "artifact",
+      "note_en": "Title 'Home' was set by the blind copy, not the original page.",
+      "note_pt": "O título 'Home' veio da cópia às cegas, não da página original."
+    }
+  ],
+  "03-keyboard-focus": [
+    {
+      "sc": "1.3.1",
+      "element": ".modal input",
+      "verdict": "genuine",
+      "note_en": "Modal 'Display name' and 'Email' inputs have no associated <label>; the placeholder is the only labelling, so the field/label relationship is not programmatic.",
+      "note_pt": "Modal 'Display name' and 'Email' inputs have no associated <label>; the placeholder is the only labelling, so the field/label relationship is not programmatic."
+    },
+    {
+      "sc": "1.3.1",
+      "element": ".sticky-header, .content",
+      "verdict": "false_positive",
+      "note_en": "Landmarks are best practice; missing <header>/<main> is not a 1.3.1 failure on its own.",
+      "note_pt": "Landmarks são boa prática; a falta de <header>/<main> sozinha não reprova a 1.3.1."
+    },
+    {
+      "sc": "1.3.5",
+      "element": ".modal input[type=email], .modal input[type=text]",
+      "verdict": "genuine",
+      "note_en": "User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=\"nickname\"/\"name\" and \"email\").",
+      "note_pt": "User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=\"nickname\"/\"name\" and \"email\")."
+    },
+    {
+      "sc": "1.4.3",
+      "element": "footer",
+      "verdict": "genuine",
+      "note_en": "Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1).",
+      "note_pt": "Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1)."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".search-input",
+      "verdict": "genuine",
+      "note_en": "Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker.",
+      "note_pt": "Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".modal input",
+      "verdict": "genuine",
+      "note_en": "Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1).",
+      "note_pt": "Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1)."
+    },
+    {
+      "sc": "2.4.3",
+      "element": "#modal-trap",
+      "verdict": "genuine",
+      "note_en": "Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the 'Open Settings' trigger; focus stays behind the overlay.",
+      "note_pt": "Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the 'Open Settings' trigger; focus stays behind the overlay."
+    },
+    {
+      "sc": "3.3.2",
+      "element": ".modal input",
+      "verdict": "genuine",
+      "note_en": "Modal inputs 'Display name' and 'Email' have placeholder-only labels that disappear when typing.",
+      "note_pt": "Modal inputs 'Display name' and 'Email' have placeholder-only labels that disappear when typing."
+    },
+    {
+      "sc": "3.3.2",
+      "element": ".search-input",
+      "verdict": "genuine",
+      "note_en": "Search field has no visible label, only placeholder 'Search tasks...'.",
+      "note_pt": "Search field has no visible label, only placeholder 'Search tasks...'."
+    },
+    {
+      "sc": "4.1.2",
+      "element": ".card-link",
+      "verdict": "genuine",
+      "note_en": "Clickable cards behave as links but expose no role (link) to assistive technology.",
+      "note_pt": "Clickable cards behave as links but expose no role (link) to assistive technology."
+    },
+    {
+      "sc": "4.1.2",
+      "element": ".expand-btn",
+      "verdict": "genuine",
+      "note_en": "Disclosure trigger is a <div> with no role=button and no aria-expanded.",
+      "note_pt": "Disclosure trigger is a <div> with no role=button and no aria-expanded."
+    },
+    {
+      "sc": "4.1.2",
+      "element": "#modal-trap .modal",
+      "verdict": "genuine",
+      "note_en": "Settings modal has no role=\"dialog\", no aria-modal=\"true\" and no accessible name (aria-labelledby to its h3).",
+      "note_pt": "Settings modal has no role=\"dialog\", no aria-modal=\"true\" and no accessible name (aria-labelledby to its h3)."
+    }
+  ],
+  "04-wcag22-specific": [
+    {
+      "sc": "1.3.5",
+      "element": "#name",
+      "verdict": "genuine",
+      "note_en": "'Your Name' input collects the user's name but has no autocomplete=\"name\".",
+      "note_pt": "'Your Name' input collects the user's name but has no autocomplete=\"name\"."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".pagination-dot",
+      "verdict": "genuine",
+      "note_en": "Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker.",
+      "note_pt": "Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".star-rating button",
+      "verdict": "genuine",
+      "note_en": "Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400.",
+      "note_pt": "Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".form-field input, .form-field textarea",
+      "verdict": "genuine",
+      "note_en": "Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary.",
+      "note_pt": "Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary."
+    },
+    {
+      "sc": "4.1.2",
+      "element": ".pagination-dot.active",
+      "verdict": "genuine",
+      "note_en": "The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected.",
+      "note_pt": "The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected."
+    }
+  ],
+  "05-form-accessibility": [
+    {
+      "sc": "1.3.1",
+      "element": ".custom-select / label (Country)",
+      "verdict": "genuine",
+      "note_en": "The Country <label> has no for attribute and is not associated with the custom <div> select.",
+      "note_pt": "The Country <label> has no for attribute and is not associated with the custom <div> select."
+    },
+    {
+      "sc": "1.3.5",
+      "element": "#fullname, input[type=email], input[type=tel], #password",
+      "verdict": "genuine",
+      "note_en": "Inputs collecting the user's own data have no autocomplete tokens (name, email, tel, new-password).",
+      "note_pt": "Inputs collecting the user's own data have no autocomplete tokens (name, email, tel, new-password)."
+    },
+    {
+      "sc": "1.4.3",
+      "element": ".required-star",
+      "verdict": "genuine",
+      "note_en": "Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000).",
+      "note_pt": "Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000)."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".form-group input, textarea, .custom-select-trigger",
+      "verdict": "genuine",
+      "note_en": "Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.",
+      "note_pt": "Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1."
+    }
+  ],
+  "06-media-failures": [
+    {
+      "sc": "1.2.3",
+      "element": "video",
+      "verdict": "genuine",
+      "note_en": "No audio description or full media alternative (transcript) for the tutorial video.",
+      "note_pt": "No audio description or full media alternative (transcript) for the tutorial video."
+    },
+    {
+      "sc": "1.2.5",
+      "element": "video",
+      "verdict": "genuine",
+      "note_en": "No audio description track (<track kind=\"descriptions\"> or described version) for the tutorial video.",
+      "note_pt": "No audio description track (<track kind=\"descriptions\"> or described version) for the tutorial video."
+    },
+    {
+      "sc": "1.4.10",
+      "element": "video",
+      "verdict": "genuine",
+      "note_en": "<video width=\"600\" height=\"340\"> is not constrained by CSS (max-width applies only to img), causing horizontal scroll at 320px viewport.",
+      "note_pt": "<video width=\"600\" height=\"340\"> is not constrained by CSS (max-width applies only to img), causing horizontal scroll at 320px viewport."
+    }
+  ],
+  "07-fully-compliant": [
+    {
+      "sc": "1.3.5",
+      "element": "#contact-name",
+      "verdict": "genuine",
+      "note_en": "Name input has no autocomplete=\"name\" (name=\"name\" does not identify input purpose).",
+      "note_pt": "Name input has no autocomplete=\"name\" (name=\"name\" does not identify input purpose)."
+    },
+    {
+      "sc": "1.3.5",
+      "element": "#contact-email",
+      "verdict": "genuine",
+      "note_en": "Email input has no autocomplete=\"email\".",
+      "note_pt": "Email input has no autocomplete=\"email\"."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".form-group input, .form-group textarea, .form-group select",
+      "verdict": "genuine",
+      "note_en": "Field border #4a4a6a is 2.01:1 vs page background #1a1a2e and 1.88:1 vs field fill #16213e; the fill itself is 1.07:1 vs the page, so the input boundary is below 3:1. Suggested border: #6b6b85 or ligh",
+      "note_pt": "Field border #4a4a6a is 2.01:1 vs page background #1a1a2e and 1.88:1 vs field fill #16213e; the fill itself is 1.07:1 vs the page, so the input boundary is below 3:1. Suggested border: #6b6b85 or ligh"
+    }
+  ],
+  "08-dynamic-content": [
+    {
+      "sc": "1.3.1",
+      "element": ".toggle-wrapper span",
+      "verdict": "genuine",
+      "note_en": "Visible text 'Email notifications' is a plain <span> not programmatically associated with the .toggle control (no label/aria-labelledby).",
+      "note_pt": "Visible text 'Email notifications' is a plain <span> not programmatically associated with the .toggle control (no label/aria-labelledby)."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".toggle",
+      "verdict": "genuine",
+      "note_en": "Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker.",
+      "note_pt": "Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker."
+    },
+    {
+      "sc": "2.1.1",
+      "element": ".toggle",
+      "verdict": "genuine",
+      "note_en": "Email notifications toggle is a <div> with onclick only; not focusable and no Space/Enter handling.",
+      "note_pt": "Email notifications toggle is a <div> with onclick only; not focusable and no Space/Enter handling."
+    },
+    {
+      "sc": "2.1.1",
+      "element": ".tab",
+      "verdict": "genuine",
+      "note_en": "Tabs are <div>s with onclick only; not focusable, no Enter/Space/arrow-key support.",
+      "note_pt": "Tabs are <div>s with onclick only; not focusable, no Enter/Space/arrow-key support."
+    }
+  ],
+  "09-color-only-info": [
+    {
+      "sc": "1.4.3",
+      "element": ".badge.pending",
+      "verdict": "genuine",
+      "note_en": "Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1.",
+      "note_pt": "Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1."
+    },
+    {
+      "sc": "1.4.11",
+      "element": ".form-group input",
+      "verdict": "genuine",
+      "note_en": "Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.",
+      "note_pt": "Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1."
+    },
+    {
+      "sc": "3.3.3",
+      "element": "#deadline",
+      "verdict": "genuine",
+      "note_en": "No suggestion for correcting the Deadline error (e.g. 'Enter a date as MM/DD/YYYY').",
+      "note_pt": "No suggestion for correcting the Deadline error (e.g. 'Enter a date as MM/DD/YYYY')."
+    }
+  ],
+  "11-wcag22-new-criteria": [
+    {
+      "sc": "1.1.1",
+      "element": "#captcha-img",
+      "verdict": "genuine",
+      "note_en": "Text CAPTCHA has only a purpose description (\"Security check image\") and no alternative form (audio or other modality) as required by the CAPTCHA exception.",
+      "note_pt": "Text CAPTCHA has only a purpose description (\"Security check image\") and no alternative form (audio or other modality) as required by the CAPTCHA exception."
+    },
+    {
+      "sc": "4.1.2",
+      "element": "#wishlist li",
+      "verdict": "genuine",
+      "note_en": "Draggable items expose no state or operability to assistive technology (no instructions for AT, no reorder control).",
+      "note_pt": "Draggable items expose no state or operability to assistive technology (no instructions for AT, no reorder control)."
+    }
+  ],
+  "12-operable-understandable": [
+    {
+      "sc": "3.1.2",
+      "element": "#lang option[value=es], option[value=pt]",
+      "verdict": "genuine",
+      "note_en": "'Español' and 'Português' option texts are in other languages but have no lang attribute (lang=\"es\", lang=\"pt\").",
+      "note_pt": "'Español' and 'Português' option texts are in other languages but have no lang attribute (lang=\"es\", lang=\"pt\")."
+    }
+  ]
+}

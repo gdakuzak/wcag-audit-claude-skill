@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout — Northwind Outfitters</title>
+<!--
+GROUND TRUTH - Known WCAG 2.2 AA failures in this page:
+1. SC 2.5.7 FAIL: #wishlist sortable list can only be reordered by dragging (mousedown/mousemove), no buttons or single-pointer alternative
+2. SC 2.5.7 FAIL: .price-range custom slider handle only moves by dragging; no click-on-track, no buttons, no keyboard
+3. SC 3.3.7 FAIL: Step 3 "Billing address" re-asks the full address entered in step 2 with no "same as shipping" option or autofill
+4. SC 3.3.8 FAIL: Password field blocks paste (onpaste="return false") and has autocomplete="off", preventing password managers
+5. SC 3.3.8 FAIL: Login requires transcribing distorted characters from an image CAPTCHA (#captcha-img) with no alternative method
+6. SC 2.1.1 FAIL: #wishlist reordering and .price-range slider have no keyboard operation at all
+7. SC 4.1.2 FAIL: .price-range slider has no role="slider", aria-valuenow/min/max or accessible value
+8. SC 2.5.7 PASS: #receipt-drop file drop zone also has a "Browse files" button that opens the file picker — should NOT be flagged
+Total: 7 genuine failures, 1 should-pass item
+-->
+<style>
+  :root { --text: #1f2933; --muted: #52606d; --accent: #0b5cad; --bg: #ffffff; --line: #7b8794; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; color: var(--text); background: var(--bg); margin: 0; line-height: 1.5; }
+  header, main { max-width: 760px; margin: 0 auto; padding: 16px; }
+  a { color: var(--accent); }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.25rem; margin-top: 2rem; }
+  label { display: block; font-weight: 600; margin-top: 12px; }
+  input[type=text], input[type=email], input[type=password] {
+    width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 4px; font-size: 1rem;
+  }
+  button { font-size: 1rem; padding: 10px 18px; border-radius: 4px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+  :focus-visible { outline: 3px solid #0b5cad; outline-offset: 2px; }
+  .step { border: 1px solid var(--line); border-radius: 6px; padding: 16px; margin-top: 16px; }
+  #wishlist { list-style: none; padding: 0; }
+  #wishlist li { padding: 12px; border: 1px solid var(--line); margin: 6px 0; border-radius: 4px; cursor: grab; background: #f5f7fa; }
+  .price-range { position: relative; height: 32px; margin: 16px 0; }
+  .price-range .track { position: absolute; top: 14px; left: 0; right: 0; height: 4px; background: var(--line); }
+  .price-range .handle { position: absolute; top: 4px; left: 40%; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); }
+  #receipt-drop { border: 2px dashed var(--line); padding: 24px; text-align: center; border-radius: 6px; }
+  #captcha-img { display: block; margin: 8px 0; border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <a href="#main">Skip to checkout</a>
+  <p><strong>Northwind Outfitters</strong></p>
+</header>
+<main id="main">
+  <h1>Checkout</h1>
+
+  <section class="step" aria-labelledby="s1">
+    <h2 id="s1">Step 1 — Sign in</h2>
+    <form>
+      <label for="login-email">Email</label>
+      <input id="login-email" type="email" autocomplete="email">
+      <label for="login-pass">Password</label>
+      <input id="login-pass" type="password" autocomplete="off" onpaste="return false" ondrop="return false">
+      <label for="captcha">Type the characters shown in the image</label>
+      <img id="captcha-img" src="captcha.png" width="160" height="50" alt="Security check image">
+      <input id="captcha" type="text">
+      <p><button type="submit">Sign in</button></p>
+    </form>
+  </section>
+
+  <section class="step" aria-labelledby="s2">
+    <h2 id="s2">Step 2 — Shipping address</h2>
+    <label for="ship-name">Full name</label>
+    <input id="ship-name" type="text" autocomplete="shipping name">
+    <label for="ship-street">Street address</label>
+    <input id="ship-street" type="text" autocomplete="shipping street-address">
+    <label for="ship-city">City</label>
+    <input id="ship-city" type="text" autocomplete="shipping address-level2">
+    <label for="ship-zip">ZIP code</label>
+    <input id="ship-zip" type="text" autocomplete="shipping postal-code">
+  </section>
+
+  <section class="step" aria-labelledby="s3">
+    <h2 id="s3">Step 3 — Billing address</h2>
+    <p>Please enter your billing address.</p>
+    <label for="bill-name">Full name</label>
+    <input id="bill-name" type="text" autocomplete="off">
+    <label for="bill-street">Street address</label>
+    <input id="bill-street" type="text" autocomplete="off">
+    <label for="bill-city">City</label>
+    <input id="bill-city" type="text" autocomplete="off">
+    <label for="bill-zip">ZIP code</label>
+    <input id="bill-zip" type="text" autocomplete="off">
+  </section>
+
+  <section class="step" aria-labelledby="s4">
+    <h2 id="s4">Step 4 — Wishlist priority</h2>
+    <p id="wl-help">Drag items to set which ones we should restock first.</p>
+    <ul id="wishlist" aria-describedby="wl-help">
+      <li>Trail running shoes</li>
+      <li>Rain shell jacket</li>
+      <li>Insulated water bottle</li>
+    </ul>
+
+    <p id="price-label">Maximum price for suggestions: <span id="price-out">$200</span></p>
+    <div class="price-range" aria-labelledby="price-label">
+      <div class="track"></div>
+      <div class="handle"></div>
+    </div>
+  </section>
+
+  <section class="step" aria-labelledby="s5">
+    <h2 id="s5">Step 5 — Upload a receipt (optional)</h2>
+    <div id="receipt-drop">
+      <p>Drop a PDF or image here</p>
+      <input id="receipt-file" type="file" accept=".pdf,image/*" hidden>
+      <button type="button" onclick="document.getElementById('receipt-file').click()">Browse files</button>
+    </div>
+  </section>
+
+  <p><button type="button">Place order</button></p>
+</main>
+<script>
+  // Drag-only reordering
+  const list = document.getElementById('wishlist');
+  let dragged = null;
+  list.addEventListener('mousedown', (e) => { dragged = e.target.closest('li'); });
+  document.addEventListener('mousemove', (e) => {
+    if (!dragged) return;
+    const over = document.elementFromPoint(e.clientX, e.clientY)?.closest('#wishlist li');
+    if (over && over !== dragged) list.insertBefore(dragged, over.nextSibling === dragged ? over : over.nextSibling);
+  });
+  document.addEventListener('mouseup', () => { dragged = null; });
+
+  // Drag-only slider
+  const range = document.querySelector('.price-range');
+  const handle = range.querySelector('.handle');
+  let sliding = false;
+  handle.addEventListener('mousedown', () => { sliding = true; });
+  document.addEventListener('mousemove', (e) => {
+    if (!sliding) return;
+    const r = range.getBoundingClientRect();
+    const pct = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    handle.style.left = `calc(${pct * 100}% - 12px)`;
+    document.getElementById('price-out').textContent = '$' + Math.round(pct * 500);
+  });
+  document.addEventListener('mouseup', () => { sliding = false; });
+
+  // Drop zone (also has a Browse button)
+  const drop = document.getElementById('receipt-drop');
+  drop.addEventListener('dragover', (e) => e.preventDefault());
+  drop.addEventListener('drop', (e) => { e.preventDefault(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "fail"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".toggle-wrapper span",
+      "description": "Visible text 'Email notifications' is a plain <span> not programmatically associated with the .toggle control (no label/aria-labelledby)."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".tabs / .tab-content",
+      "description": "Tab-to-panel relationship is visual only; no aria-controls/aria-labelledby or tablist structure."
+    },
+    {
+      "sc": "1.3.2",
+      "status": "fail",
+      "element": ".step",
+      "description": "CSS 'order' (nth-child(1) order:3, (2) order:1, (3) order:2) displays steps as 2, 3, 1 while DOM/reading order is 1, 2, 3; screen reader sequence contradicts the visual sequence."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".toggle",
+      "description": "Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".toggle",
+      "description": "Email notifications toggle is a <div> with onclick only; not focusable and no Space/Enter handling."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".tab",
+      "description": "Tabs are <div>s with onclick only; not focusable, no Enter/Space/arrow-key support."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".accordion-header",
+      "description": "Accordion headers are <div>s with onclick only; not focusable or operable by keyboard."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".toggle",
+      "description": "Toggle has no role (switch/checkbox), no aria-checked state, and no accessible name."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".tab",
+      "description": "Tabs lack role=tablist/tab/tabpanel and aria-selected; active state is only a CSS class."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".accordion-header",
+      "description": "Accordion triggers lack role=button and aria-expanded; open/closed state is not exposed."
+    },
+    {
+      "sc": "4.1.3",
+      "status": "fail",
+      "element": ".status-msg",
+      "description": "'Settings saved!' is shown by adding a class to a div with no role=\"status\"/aria-live, so screen readers are not informed."
+    }
+  ]
+}

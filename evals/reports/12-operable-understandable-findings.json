@@ -1,0 +1,310 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "warning"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "warning"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "warning"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "warning"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "fail"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "fail"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "fail"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "fail"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "pass"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.1",
+      "status": "warning",
+      "element": "div.menu",
+      "description": "Site navigation is a <div> of links with no <nav> landmark or list structure, and the page has no <main>/<header>/<footer> landmarks."
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail",
+      "element": "#full-name, #email, #phone, #dob",
+      "description": "Personal data inputs lack autocomplete tokens (name, email, tel, bday)."
+    },
+    {
+      "sc": "1.4.4",
+      "status": "warning",
+      "element": ".promo-carousel",
+      "description": "Fixed height 120px with overflow:hidden may clip slide text at 200% text size."
+    },
+    {
+      "sc": "1.4.12",
+      "status": "warning",
+      "element": ".promo-carousel",
+      "description": "Fixed height 120px with overflow:hidden may clip slide text when line height/letter spacing are increased."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "warning",
+      "element": "#delete-draft",
+      "description": "Handler is bound to mousedown only; activating the button with Enter/Space does nothing. Use the click event."
+    },
+    {
+      "sc": "2.1.4",
+      "status": "fail",
+      "element": "document keydown ('s', 'd')",
+      "description": "Single-character shortcuts 's' (focus search) and 'd' (clear draft) fire on any keypress including while typing in inputs/textarea; no way to turn off or remap, and 'd' destroys the draft."
+    },
+    {
+      "sc": "2.2.1",
+      "status": "fail",
+      "element": "script setTimeout (/logout)",
+      "description": "Session is ended by redirect to /logout?reason=timeout after 120 seconds with no warning and no option to extend."
+    },
+    {
+      "sc": "2.2.2",
+      "status": "fail",
+      "element": ".promo-carousel",
+      "description": "Carousel auto-rotates every 3000ms indefinitely with no pause, stop or hide control."
+    },
+    {
+      "sc": "2.4.1",
+      "status": "fail",
+      "element": "div.menu",
+      "description": "No skip link or landmarks to bypass the 16-link navigation block before the main content."
+    },
+    {
+      "sc": "2.4.2",
+      "status": "fail",
+      "element": "title",
+      "description": "The <title> element is empty; page has no descriptive title."
+    },
+    {
+      "sc": "2.5.2",
+      "status": "fail",
+      "element": "#delete-draft",
+      "description": "Draft is deleted on mousedown (down-event); the action cannot be aborted by moving the pointer away, and there is no undo."
+    },
+    {
+      "sc": "3.1.2",
+      "status": "fail",
+      "element": "#lang option[value=es], option[value=pt]",
+      "description": "'Espa\u00f1ol' and 'Portugu\u00eas' option texts are in other languages but have no lang attribute (lang=\"es\", lang=\"pt\")."
+    },
+    {
+      "sc": "3.2.2",
+      "status": "fail",
+      "element": "#lang",
+      "description": "Changing the language <select> immediately navigates (onchange window.location) without prior warning or a submit button."
+    },
+    {
+      "sc": "3.3.3",
+      "status": "fail",
+      "element": "#dob-err",
+      "description": "Error message 'Invalid input' does not suggest the known correct format (DD/MM/YYYY)."
+    }
+  ]
+}

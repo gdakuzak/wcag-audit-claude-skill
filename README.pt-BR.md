@@ -6,20 +6,19 @@ Plugin para Claude Code e Claude Desktop que faz auditorias de acessibilidade WC
 
 ## Resultados
 
-Avaliado em 10 páginas de teste feitas para isso, com 56 falhas de acessibilidade documentadas:
+Avaliação às cegas da v1.1.0 em 12 páginas de teste (67 falhas conhecidas e 22 itens que devem passar). Cada página foi auditada a partir de uma cópia sem comentários e com título neutro, por agentes que nunca viram o gabarito, e a correção foi rígida: uma falha conhecida só conta como achado *fail* no critério certo e citando o elemento.
 
 | Métrica | Resultado |
 |---------|-----------|
-| Taxa de verdadeiros positivos | **100%** (56/56 falhas conhecidas detectadas) |
-| Falsos negativos | **0** |
-| Falsos positivos | **0** (confirmado por investigação manual) |
-| Cobertura na avaliação | **28/28** critérios do checklist da época |
+| Taxa de detecção | **98,5%** (66/67 falhas conhecidas) |
+| Não detectadas | **1** (links diferenciados só pela cor, página 09) |
+| Falsos positivos | **2** (falta de landmarks registrada na 1.3.1) · itens que devem passar: 22/22 corretos |
+| Critérios avaliados | **55/55** em todas as páginas |
+| Problemas reais extras | **41** falhas reais que o gabarito não documentava (revisadas à mão) |
 
-A skill também encontrou falhas reais de contraste não textual (SC 1.4.11) na página de teste "totalmente conforme", que tinham passado despercebidas por quem montou o teste.
+A rodada às cegas também mostrou que 8 das 59 falhas documentadas na v1.0 eram erros do próprio gabarito (por exemplo, `#757575` sobre branco tem 4,61:1, e não 4,48:1). A v1.0 tinha "detectado" todas lendo as respostas nos comentários das páginas. Agora elas são itens que devem passar.
 
-> A avaliação foi feita com o checklist anterior, de 28 critérios. Hoje a skill cobre os 55 critérios A + AA, e a avaliação ainda não foi refeita com os novos.
-
-[Ver o relatório completo da avaliação →](https://gdakuzak.github.io/wcag-audit-claude-skill/eval-report.html)
+[Ver o relatório completo da avaliação →](https://gdakuzak.github.io/wcag-audit-claude-skill/eval-report.pt-BR.html)
 
 ## Instalação
 
@@ -104,26 +103,28 @@ A skill aceita URL, arquivo HTML local, arquivo enviado ou um build de Storybook
 │   ├── reports/                     #   Relatórios gerados na avaliação
 │   ├── grade_all.py                 #   Script de correção automática
 │   └── grading_results.json         #   Resultados estruturados
-├── docs/eval-report.html            # Painel da avaliação (GitHub Pages)
+├── docs/                            # Painel da avaliação, EN e pt-BR (GitHub Pages)
 └── original-work/                   # Auditoria OKLIS-2026 que inspirou a skill
 ```
 
 ## Páginas de teste da avaliação
 
-| # | Foco | Falhas conhecidas | Detectadas |
-|---|------|-------------------|------------|
-| 01 | Contraste sutil (razões no limite, rgba, não textual) | 5 | 5 |
-| 02 | Estrutura semântica (títulos, landmarks, lang) | 8 | 8 |
-| 03 | Teclado e foco (armadilhas, visibilidade, tabindex) | 7 | 7 |
-| 04 | Específicos da WCAG 2.2 (tamanho de alvo, foco encoberto) | 4 | 4 |
-| 05 | Acessibilidade de formulários (labels, fieldsets, ARIA) | 7 | 7 |
-| 06 | Mídia (texto alternativo, legendas, transcrições) | 7 | 7 |
-| 07 | Totalmente conforme (teste de falso positivo) | 0* | — |
-| 08 | Conteúdo dinâmico (widgets, estados ARIA, live regions) | 6 | 6 |
-| 09 | Informação só por cor (links, status, erros) | 6 | 6 |
-| 10 | Responsividade e reflow (viewport, tamanho do texto, espaçamento) | 6 | 6 |
+| # | Foco | Falhas conhecidas | Detectadas | Devem passar OK | Extras reais |
+|---|------|-------------------|------------|-----------------|--------------|
+| 01 | Contraste sutil (razões no limite, rgba, não textual) | 3 | 3 | 4/4 | 0 |
+| 02 | Estrutura semântica (títulos, landmarks, lang) | 8 | 8 | 1/1 | 5 |
+| 03 | Teclado e foco (armadilhas, visibilidade, tabindex) | 7 | 7 | 1/1 | 11 |
+| 04 | Alvos e foco encoberto da WCAG 2.2 | 4 | 4 | 2/2 | 5 |
+| 05 | Acessibilidade de formulários (labels, fieldsets, ARIA) | 7 | 7 | 0/0 | 4 |
+| 06 | Mídia (texto alternativo, legendas, transcrições) | 7 | 7 | 1/1 | 3 |
+| 07 | Totalmente conforme (teste de falso positivo) | 0 | 0 | 5/5 | 3 |
+| 08 | Conteúdo dinâmico (widgets, estados ARIA, live regions) | 7 | 7 | 0/0 | 4 |
+| 09 | Informação só por cor (links, status, erros) | 4 | 3 | 3/3 | 3 |
+| 10 | Responsividade e reflow (viewport, tamanho do texto, espaçamento) | 4 | 4 | 3/3 | 0 |
+| 11 | Novos na WCAG 2.2 (arrastar, entrada redundante, autenticação) | 7 | 7 | 1/1 | 2 |
+| 12 | Operável e compreensível (tempo, pular blocos, título, atalhos, erros) | 9 | 9 | 1/1 | 1 |
 
-\*A página 07 foi feita para estar totalmente conforme, mas a auditoria achou falhas reais de contraste de borda (SC 1.4.11) no tema escuro.
+Para rodar: `python3 evals/grade_all.py` e depois `python3 evals/build_report.py`.
 
 ## Limitações
 

@@ -1,0 +1,364 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "warning"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "fail"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "warning"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "fail"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "fail"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "na"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".modal input",
+      "description": "Modal 'Display name' and 'Email' inputs have no associated <label>; the placeholder is the only labelling, so the field/label relationship is not programmatic."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".sticky-header, .content",
+      "description": "Page header and content area are generic <div>s; no <header> or <main> landmark exposes the page structure."
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail",
+      "element": ".modal input[type=email], .modal input[type=text]",
+      "description": "User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=\"nickname\"/\"name\" and \"email\")."
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": "footer",
+      "description": "Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1)."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".search-input",
+      "description": "Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".modal input",
+      "description": "Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1)."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".subtle-focus",
+      "description": "Create Task focus indicator is a 1px #e0e0e0 outline on #ffffff: 1.32:1, below 3:1."
+    },
+    {
+      "sc": "1.4.13",
+      "status": "fail",
+      "element": ".expand-btn / .expand-content",
+      "description": "Details appear on mouseover and disappear on mouseout of the trigger; moving the pointer onto the revealed content hides it (not hoverable), and it never appears on keyboard focus."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".card-link",
+      "description": "Project cards navigate via onclick on a <div> with no tabindex or key handler; unreachable and inoperable by keyboard."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".custom-dropdown",
+      "description": "Status dropdown and its .option items are <div>s toggled by onclick only; not focusable, no Enter/Space/arrow key support."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".expand-btn",
+      "description": "Project details are revealed only on mouseover; no keyboard (focus/click) way to show them."
+    },
+    {
+      "sc": "2.4.1",
+      "status": "warning",
+      "element": "body",
+      "description": "No skip link and no <main> landmark; bypassing the fixed header relies on heading navigation only. Verify whether repeated blocks exist across the app."
+    },
+    {
+      "sc": "2.4.3",
+      "status": "fail",
+      "element": ".search-input[tabindex=\"5\"]",
+      "description": "Positive tabindex=\"5\" puts the search field first in tab order regardless of DOM position, disrupting the logical sequence."
+    },
+    {
+      "sc": "2.4.3",
+      "status": "fail",
+      "element": "#modal-trap",
+      "description": "Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the 'Open Settings' trigger; focus stays behind the overlay."
+    },
+    {
+      "sc": "2.4.7",
+      "status": "fail",
+      "element": "*:focus",
+      "description": "Global '*:focus { outline: none; }' removes the focus indicator from all focusable elements (search input, Open Settings, modal inputs, Save) without any replacement style."
+    },
+    {
+      "sc": "2.4.7",
+      "status": "fail",
+      "element": ".subtle-focus",
+      "description": "The only replacement focus style is a 1px #e0e0e0 outline (1.32:1 on white), which is not visibly perceivable."
+    },
+    {
+      "sc": "2.4.11",
+      "status": "fail",
+      "element": ".sticky-header",
+      "description": "Fixed header (position:fixed, z-index:100, ~70px tall) with no scroll-padding-top; focused elements scrolled to the top of the viewport can be entirely hidden beneath it."
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail",
+      "element": ".modal input",
+      "description": "Modal inputs 'Display name' and 'Email' have placeholder-only labels that disappear when typing."
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail",
+      "element": ".search-input",
+      "description": "Search field has no visible label, only placeholder 'Search tasks...'."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".card-link",
+      "description": "Clickable cards behave as links but expose no role (link) to assistive technology."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".custom-dropdown",
+      "description": "Custom dropdown exposes no role (combobox/button + listbox), no aria-expanded state, and options have no role=option/aria-selected."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".expand-btn",
+      "description": "Disclosure trigger is a <div> with no role=button and no aria-expanded."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": "#modal-trap .modal",
+      "description": "Settings modal has no role=\"dialog\", no aria-modal=\"true\" and no accessible name (aria-labelledby to its h3)."
+    }
+  ]
+}

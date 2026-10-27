@@ -1,680 +1,919 @@
 {
-  "iteration": 2,
-  "test_pages": 10,
-  "total_ground_truth_failures": 56,
-  "true_positives_detected": 56,
-  "false_negative_rate": 0.0,
-  "total_true_negatives": 8,
-  "true_negatives_correct": 1,
-  "false_positive_rate": 87.5,
-  "meta_checks_pass": 16,
-  "meta_checks_total": 17,
-  "per_test": {
+  "skill_version": "1.1.0",
+  "test_pages": 12,
+  "known_failures": 67,
+  "detected": 66,
+  "detection_rate": 98.5,
+  "should_pass_items": 22,
+  "should_pass_correct": 22,
+  "per_page": {
     "01-subtle-contrast": {
-      "true_positives": {
-        "detected": 5,
-        "total": 5
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 1
-      },
-      "meta": {
-        "pass": 2,
-        "total": 2
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 100.0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tn",
+          "sc": "1.4.3",
+          "text": ".subtitle #757575 on #fff is 4.61:1 (v1.0 ground truth wrongly said 4.48)",
+          "passed": true
         },
         {
-          "text": "Flags #757575 on #ffffff as borderline fail (4.48:1 < 4.5:1)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
+          "type": "tp",
+          "sc": "1.4.3",
+          "text": ".card-meta #959595 on #f5f5f5",
+          "passed": true
         },
         {
-          "text": "Flags rgba overlay text as contrast failure",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
+          "type": "tp",
+          "sc": "1.4.3",
+          "text": ".tag #fff on #74b9ff",
+          "passed": true
         },
         {
-          "text": "Flags tag text #ffffff on #74b9ff as low contrast",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
+          "type": "tn",
+          "sc": "1.4.3",
+          "text": ".overlay-text rgba(255,255,255,.7) on #333 = #c2c2c2, 7.09:1 (v1.0 said ~3.4)",
+          "passed": true
         },
         {
-          "text": "Flags button border #cccccc on #ffffff as non-text contrast fail",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.11"
+          "type": "tp",
+          "sc": "1.4.11",
+          "text": ".btn-outline border #ccc",
+          "passed": true
         },
         {
-          "text": "Flags card meta #959595 on #f5f5f5 as contrast fail",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
+          "type": "tn",
+          "sc": "1.4.3",
+          "text": ".accent-text #2d6a4f passes 7.08:1",
+          "passed": true
         },
         {
-          "text": "Does NOT flag #2d6a4f on #ffffff (7.08:1 passes)",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "1.4.3"
-        },
-        {
-          "text": "Contains programmatic contrast ratios",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tn",
+          "sc": "1.4.3",
+          "text": ".dark-section #e0e0e0 on #1a1a1a passes",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [],
+      "criteria_rated": 55
     },
     "02-semantic-structure": {
-      "true_positives": {
-        "detected": 8,
-        "total": 8
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 0
-      },
-      "meta": {
-        "pass": 2,
-        "total": 2
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Headings are styled divs",
+          "passed": true
         },
         {
-          "text": "Flags fake headings (styled divs instead of h1-h6)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Navigation built from divs",
+          "passed": true
         },
         {
-          "text": "Flags div navigation instead of nav/ul",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Data table without th/scope",
+          "passed": true
         },
         {
-          "text": "Flags table missing th/scope",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Form inputs with placeholder-only labels",
+          "passed": true
         },
         {
-          "text": "Flags placeholder-only form labels",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "1.3.2",
+          "text": "CSS order breaks reading sequence",
+          "passed": true
         },
         {
-          "text": "Flags CSS order mismatch (meaningful sequence)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.2"
+          "type": "tn",
+          "sc": "2.4.6",
+          "text": "\"click here\"/\"Read more\" have purpose from the sentence (2.4.4 AA passes)",
+          "passed": true
         },
         {
-          "text": "Flags generic link text (click here / read more)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.4.4"
+          "type": "tp",
+          "sc": "3.1.2",
+          "text": "French quote without lang",
+          "passed": true
         },
         {
-          "text": "Flags missing lang=fr on French text",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "3.1.2"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Breadcrumb not in nav",
+          "passed": true
         },
         {
-          "text": "Flags custom toggle missing role/aria",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "4.1.2"
-        },
-        {
-          "text": "Contains programmatic contrast ratios",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "4.1.2",
+          "text": "Custom toggle without role/state",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.3.1",
+          "element": "body > .container",
+          "description": "No <header>/<main>/<footer>-in-landmark structure beyond <footer>; no <main> landmark."
+        },
+        {
+          "sc": "1.3.5",
+          "element": "input[type=text], input[type=email]",
+          "description": "Inputs collecting the user's name and email lack autocomplete=\"name\" and autocomplete=\"email\"."
+        },
+        {
+          "sc": "1.4.3",
+          "element": "footer",
+          "description": "Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".form-group input, .form-group textarea",
+          "description": "Field border #cccccc on #fefefe = 1.59:1, below 3:1."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".toggle",
+          "description": "Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1."
+        },
+        {
+          "sc": "2.1.1",
+          "element": ".toggle",
+          "description": "Toggle is a <div onclick> with no tabindex and no keydown handler; cannot be operated by keyboard."
+        },
+        {
+          "sc": "2.4.2",
+          "element": "title",
+          "description": "Page title is \"Home\" while the content is the article \"Understanding Web Standards\"; title does not describe the page."
+        }
+      ],
+      "criteria_rated": 55
     },
     "03-keyboard-focus": {
-      "true_positives": {
-        "detected": 7,
-        "total": 7
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 0
-      },
-      "meta": {
-        "pass": 2,
-        "total": 2
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "2.1.1",
+          "text": ".card-link div with onclick",
+          "passed": true
         },
         {
-          "text": "Flags onclick div without keyboard access",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.1.1"
+          "type": "tn",
+          "sc": "2.1.2",
+          "text": "Modal is not a keyboard trap: no JS traps focus, Tab leaves it",
+          "passed": true
         },
         {
-          "text": "Flags modal keyboard trap (no Escape)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.1.2"
+          "type": "tp",
+          "sc": "2.4.7",
+          "text": "Global outline:none",
+          "passed": true
         },
         {
-          "text": "Flags global outline:none removing focus",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.4.7"
+          "type": "tp",
+          "sc": "2.4.3",
+          "text": "tabindex=5 on search input",
+          "passed": true
         },
         {
-          "text": "Flags tabindex=5 disrupting focus order",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.4.3"
+          "type": "tp",
+          "sc": "2.4.7",
+          "text": ".custom-dropdown has no focus indicator",
+          "passed": true
         },
         {
-          "text": "Flags sticky header obscuring focus",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.4.11"
+          "type": "tp",
+          "sc": "2.4.11",
+          "text": "Sticky header obscures focus",
+          "passed": true
         },
         {
-          "text": "Flags onmouseover with no keyboard equivalent",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.1.1"
+          "type": "tp",
+          "sc": "2.1.1",
+          "text": "Mouse-only expand",
+          "passed": true
         },
         {
-          "text": "Flags low-contrast focus ring",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.11"
-        },
-        {
-          "text": "Contains programmatic contrast ratios",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.4.11",
+          "text": "1px #e0e0e0 focus ring",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.3.1",
+          "element": ".modal input",
+          "description": "Modal 'Display name' and 'Email' inputs have no associated <label>; the placeholder is the only labelling, so the field/label relationship is not programmatic."
+        },
+        {
+          "sc": "1.3.1",
+          "element": ".sticky-header, .content",
+          "description": "Page header and content area are generic <div>s; no <header> or <main> landmark exposes the page structure."
+        },
+        {
+          "sc": "1.3.5",
+          "element": ".modal input[type=email], .modal input[type=text]",
+          "description": "User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=\"nickname\"/\"name\" and \"email\")."
+        },
+        {
+          "sc": "1.4.3",
+          "element": "footer",
+          "description": "Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1)."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".search-input",
+          "description": "Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".modal input",
+          "description": "Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1)."
+        },
+        {
+          "sc": "2.4.3",
+          "element": "#modal-trap",
+          "description": "Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the 'Open Settings' trigger; focus stays behind the overlay."
+        },
+        {
+          "sc": "3.3.2",
+          "element": ".modal input",
+          "description": "Modal inputs 'Display name' and 'Email' have placeholder-only labels that disappear when typing."
+        },
+        {
+          "sc": "3.3.2",
+          "element": ".search-input",
+          "description": "Search field has no visible label, only placeholder 'Search tasks...'."
+        },
+        {
+          "sc": "4.1.2",
+          "element": ".card-link",
+          "description": "Clickable cards behave as links but expose no role (link) to assistive technology."
+        },
+        {
+          "sc": "4.1.2",
+          "element": ".expand-btn",
+          "description": "Disclosure trigger is a <div> with no role=button and no aria-expanded."
+        },
+        {
+          "sc": "4.1.2",
+          "element": "#modal-trap .modal",
+          "description": "Settings modal has no role=\"dialog\", no aria-modal=\"true\" and no accessible name (aria-labelledby to its h3)."
+        }
+      ],
+      "criteria_rated": 55
     },
     "04-wcag22-specific": {
-      "true_positives": {
-        "detected": 4,
-        "total": 4
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 1
-      },
-      "meta": {
-        "pass": 2,
-        "total": 2
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 100.0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "2.5.8",
+          "text": "8px pagination dots",
+          "passed": true
         },
         {
-          "text": "Flags 8px pagination dots (SC 2.5.8)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.5.8"
+          "type": "tp",
+          "sc": "2.5.8",
+          "text": "18px icon buttons",
+          "passed": true
         },
         {
-          "text": "Flags 18px icon buttons (SC 2.5.8)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.5.8"
+          "type": "tp",
+          "sc": "2.5.8",
+          "text": "14px star rating",
+          "passed": true
         },
         {
-          "text": "Flags 14px star rating (SC 2.5.8)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.5.8"
+          "type": "tp",
+          "sc": "2.4.11",
+          "text": "Fixed bottom bar obscures focus",
+          "passed": true
         },
         {
-          "text": "Flags fixed bottom bar obscuring focus (SC 2.4.11)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.4.11"
+          "type": "tn",
+          "sc": "2.5.8",
+          "text": "Inline link exempt from target size",
+          "passed": true
         },
         {
-          "text": "Does NOT flag 48px button (large enough)",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "2.5.8"
-        },
-        {
-          "text": "Contains programmatic contrast ratios",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tn",
+          "sc": "2.5.8",
+          "text": "48px button",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.3.5",
+          "element": "#name",
+          "description": "'Your Name' input collects the user's name but has no autocomplete=\"name\"."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".pagination-dot",
+          "description": "Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".star-rating button",
+          "description": "Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".form-field input, .form-field textarea",
+          "description": "Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary."
+        },
+        {
+          "sc": "4.1.2",
+          "element": ".pagination-dot.active",
+          "description": "The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected."
+        }
+      ],
+      "criteria_rated": 55
     },
     "05-form-accessibility": {
-      "true_positives": {
-        "detected": 7,
-        "total": 7
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 0
-      },
-      "meta": {
-        "pass": 2,
-        "total": 2
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Email input without label",
+          "passed": true
         },
         {
-          "text": "Flags email input with no label",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Radio group without fieldset",
+          "passed": true
         },
         {
-          "text": "Flags radio group without fieldset/legend",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "3.3.2",
+          "text": "Phone input without label/format",
+          "passed": true
         },
         {
-          "text": "Flags phone input with no label",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "3.3.2"
+          "type": "tp",
+          "sc": "3.3.1",
+          "text": "Errors not associated with inputs",
+          "passed": true
         },
         {
-          "text": "Flags error not associated with input",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "3.3.1"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Required shown only by color",
+          "passed": true
         },
         {
-          "text": "Flags required indicated only by color",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "4.1.2",
+          "text": "Div-based select without ARIA",
+          "passed": true
         },
         {
-          "text": "Flags custom select missing ARIA",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "4.1.2"
-        },
-        {
-          "text": "Flags placeholder contrast failure (#bbbbbb)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
-        },
-        {
-          "text": "Contains programmatic contrast ratios",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.4.3",
+          "text": "Placeholder #bbb contrast",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.3.1",
+          "element": ".custom-select / label (Country)",
+          "description": "The Country <label> has no for attribute and is not associated with the custom <div> select."
+        },
+        {
+          "sc": "1.3.5",
+          "element": "#fullname, input[type=email], input[type=tel], #password",
+          "description": "Inputs collecting the user's own data have no autocomplete tokens (name, email, tel, new-password)."
+        },
+        {
+          "sc": "1.4.3",
+          "element": ".required-star",
+          "description": "Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000)."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".form-group input, textarea, .custom-select-trigger",
+          "description": "Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1."
+        }
+      ],
+      "criteria_rated": 55
     },
     "06-media-failures": {
-      "true_positives": {
-        "detected": 7,
-        "total": 7
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 1
-      },
-      "meta": {
-        "pass": 1,
-        "total": 1
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 100.0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.1.1",
+          "text": "Meaningful hero with alt=\"\"",
+          "passed": true
         },
         {
-          "text": "Flags hero image with empty alt (meaningful content)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.1.1"
+          "type": "tp",
+          "sc": "1.1.1",
+          "text": "Product photo without alt",
+          "passed": true
         },
         {
-          "text": "Flags product photo missing alt attribute",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.1.1"
+          "type": "tp",
+          "sc": "1.1.1",
+          "text": "alt=\"image\"",
+          "passed": true
         },
         {
-          "text": "Flags non-descriptive alt='image'",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.1.1"
+          "type": "tp",
+          "sc": "1.4.5",
+          "text": "Image of text heading",
+          "passed": true
         },
         {
-          "text": "Flags image of text (SC 1.4.5)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.5"
+          "type": "tp",
+          "sc": "1.1.1",
+          "text": "Icon link without name",
+          "passed": true
         },
         {
-          "text": "Flags icon link with no accessible name",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.1.1"
+          "type": "tp",
+          "sc": "1.2.1",
+          "text": "Audio without transcript",
+          "passed": true
         },
         {
-          "text": "Flags audio with no transcript",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.2.1"
+          "type": "tp",
+          "sc": "1.2.2",
+          "text": "Video without captions",
+          "passed": true
         },
         {
-          "text": "Flags video with no captions",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.2.2"
-        },
-        {
-          "text": "Does NOT flag decorative divider (alt='' correct)",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "1.1.1"
+          "type": "tn",
+          "sc": "1.1.1",
+          "text": "Decorative divider with alt=\"\"",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.2.3",
+          "element": "video",
+          "description": "No audio description or full media alternative (transcript) for the tutorial video."
+        },
+        {
+          "sc": "1.2.5",
+          "element": "video",
+          "description": "No audio description track (<track kind=\"descriptions\"> or described version) for the tutorial video."
+        },
+        {
+          "sc": "1.4.10",
+          "element": "video",
+          "description": "<video width=\"600\" height=\"340\"> is not constrained by CSS (max-width applies only to img), causing horizontal scroll at 320px viewport."
+        }
+      ],
+      "criteria_rated": 55
     },
     "07-fully-compliant": {
-      "true_positives": {
-        "detected": 0,
-        "total": 0
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 3
-      },
-      "meta": {
-        "pass": 1,
-        "total": 2
-      },
-      "false_negative_rate": 0,
-      "false_positive_rate": 100.0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tn",
+          "sc": "1.4.3",
+          "text": "No text contrast failures",
+          "passed": true
         },
         {
-          "text": "Does NOT flag dark theme text contrast (all passing)",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "1.4.3"
+          "type": "tn",
+          "sc": "2.4.7",
+          "text": "Custom focus styles are visible",
+          "passed": true
         },
         {
-          "text": "Does NOT flag custom focus styles (gold outline)",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "2.4.7"
+          "type": "tn",
+          "sc": "2.5.8",
+          "text": "44px targets / inline links",
+          "passed": true
         },
         {
-          "text": "Does NOT flag 44px buttons as too small",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "2.5.8"
+          "type": "tn",
+          "sc": "1.1.1",
+          "text": "Decorative alt and aria-labels are correct",
+          "passed": true
         },
         {
-          "text": "Recognizes page as largely compliant",
-          "passed": false,
-          "type": "meta",
-          "sc": ""
+          "type": "tn",
+          "sc": "2.4.1",
+          "text": "Skip link present",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.3.5",
+          "element": "#contact-name",
+          "description": "Name input has no autocomplete=\"name\" (name=\"name\" does not identify input purpose)."
+        },
+        {
+          "sc": "1.3.5",
+          "element": "#contact-email",
+          "description": "Email input has no autocomplete=\"email\"."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".form-group input, .form-group textarea, .form-group select",
+          "description": "Field border #4a4a6a is 2.01:1 vs page background #1a1a2e and 1.88:1 vs field fill #16213e; the fill itself is 1.07:1 vs the page, so the input boundary is below 3:1. Suggested border: #6b6b85 or ligh"
+        }
+      ],
+      "criteria_rated": 55
     },
     "08-dynamic-content": {
-      "true_positives": {
-        "detected": 6,
-        "total": 6
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 0
-      },
-      "meta": {
-        "pass": 2,
-        "total": 2
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "4.1.2",
+          "text": "Toggle without role",
+          "passed": true
         },
         {
-          "text": "Flags toggle missing role/aria-checked",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "4.1.2"
+          "type": "tp",
+          "sc": "4.1.2",
+          "text": "Toggle without aria-checked",
+          "passed": true
         },
         {
-          "text": "Flags status message missing aria-live",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "4.1.3"
+          "type": "tp",
+          "sc": "4.1.3",
+          "text": "Status message not announced",
+          "passed": true
         },
         {
-          "text": "Flags tab panel missing ARIA roles",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.1"
+          "type": "tp",
+          "sc": "1.3.1",
+          "text": "Tabs without tablist/tab/tabpanel",
+          "passed": true
         },
         {
-          "text": "Flags accordion not keyboard accessible",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "2.1.1"
+          "type": "tp",
+          "sc": "2.1.1",
+          "text": "Accordion not keyboard operable",
+          "passed": true
         },
         {
-          "text": "Flags accordion missing aria-expanded",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "4.1.2"
+          "type": "tp",
+          "sc": "4.1.2",
+          "text": "Accordion without aria-expanded",
+          "passed": true
         },
         {
-          "text": "Flags CSS order mismatch on steps",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.3.2"
-        },
-        {
-          "text": "Contains programmatic contrast ratios",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.3.2",
+          "text": "Steps visually reordered",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.3.1",
+          "element": ".toggle-wrapper span",
+          "description": "Visible text 'Email notifications' is a plain <span> not programmatically associated with the .toggle control (no label/aria-labelledby)."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".toggle",
+          "description": "Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker."
+        },
+        {
+          "sc": "2.1.1",
+          "element": ".toggle",
+          "description": "Email notifications toggle is a <div> with onclick only; not focusable and no Space/Enter handling."
+        },
+        {
+          "sc": "2.1.1",
+          "element": ".tab",
+          "description": "Tabs are <div>s with onclick only; not focusable, no Enter/Space/arrow-key support."
+        }
+      ],
+      "criteria_rated": 55
     },
     "09-color-only-info": {
-      "true_positives": {
-        "detected": 6,
-        "total": 6
-      },
-      "true_negatives": {
-        "correct": 0,
-        "total": 1
-      },
-      "meta": {
-        "pass": 1,
-        "total": 1
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 100.0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tp",
+          "sc": "1.4.1",
+          "text": "Links only distinguished by color",
+          "passed": false
         },
         {
-          "text": "Flags links without underlines (color only)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.1"
+          "type": "tp",
+          "sc": "1.4.1",
+          "text": "Required only by red color",
+          "passed": true
         },
         {
-          "text": "Flags required fields by color only",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.1"
+          "type": "tn",
+          "sc": "1.4.1",
+          "text": "Status dots have text labels (Online/Away/Offline)",
+          "passed": true
         },
         {
-          "text": "Flags status dots as color-only",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.1"
+          "type": "tn",
+          "sc": "1.4.1",
+          "text": "Legend swatches have text labels",
+          "passed": true
         },
         {
-          "text": "Flags chart legend color-only",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.1"
+          "type": "tp",
+          "sc": "1.4.1",
+          "text": "Error only by red border",
+          "passed": true
         },
         {
-          "text": "Flags error border as color-only",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.1"
+          "type": "tp",
+          "sc": "1.4.3",
+          "text": ".success-text #4caf50",
+          "passed": true
         },
         {
-          "text": "Flags #4caf50 success text contrast",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
-        },
-        {
-          "text": "Does NOT flag badges (use color AND text)",
-          "passed": false,
-          "type": "true_negative",
-          "sc": "1.4.1"
+          "type": "tn",
+          "sc": "1.4.1",
+          "text": "Badges use color and text",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.4.3",
+          "element": ".badge.pending",
+          "description": "Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1."
+        },
+        {
+          "sc": "1.4.11",
+          "element": ".form-group input",
+          "description": "Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1."
+        },
+        {
+          "sc": "3.3.3",
+          "element": "#deadline",
+          "description": "No suggestion for correcting the Deadline error (e.g. 'Enter a date as MM/DD/YYYY')."
+        }
+      ],
+      "criteria_rated": 55
     },
     "10-responsive-reflow": {
-      "true_positives": {
-        "detected": 6,
-        "total": 6
-      },
-      "true_negatives": {
-        "correct": 1,
-        "total": 1
-      },
-      "meta": {
-        "pass": 1,
-        "total": 1
-      },
-      "false_negative_rate": 0.0,
-      "false_positive_rate": 0.0,
-      "details": [
+      "assertions": [
         {
-          "text": "HTML report exists",
-          "passed": true,
-          "type": "meta",
-          "sc": ""
+          "type": "tn",
+          "sc": "1.4.10",
+          "text": "Data table in overflow-x:auto wrapper (tables are exempt)",
+          "passed": true
         },
         {
-          "text": "Flags fixed-width table (min-width:900px)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.10"
+          "type": "tp",
+          "sc": "1.4.10",
+          "text": "nowrap code block clips",
+          "passed": true
         },
         {
-          "text": "Flags code block nowrap clipping",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.10"
+          "type": "tn",
+          "sc": "1.4.4",
+          "text": "14px !important still scales with browser zoom",
+          "passed": true
         },
         {
-          "text": "Flags font-size px !important blocking resize",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.4"
+          "type": "tp",
+          "sc": "1.4.10",
+          "text": "Fixed-height hero clips",
+          "passed": true
         },
         {
-          "text": "Flags hero fixed height clipping",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.10"
+          "type": "tp",
+          "sc": "1.4.12",
+          "text": "Tight text spacing",
+          "passed": true
         },
         {
-          "text": "Flags tight text spacing (line-height:1.0)",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.12"
+          "type": "tp",
+          "sc": "1.4.3",
+          "text": "Watermark #e8e8e8",
+          "passed": true
         },
         {
-          "text": "Flags watermark #e8e8e8 contrast",
-          "passed": true,
-          "type": "true_positive",
-          "sc": "1.4.3"
-        },
-        {
-          "text": "Does NOT flag responsive card (reflows correctly)",
-          "passed": true,
-          "type": "true_negative",
-          "sc": "1.4.10"
+          "type": "tn",
+          "sc": "1.4.10",
+          "text": "Responsive card reflows",
+          "passed": true
         }
-      ]
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [],
+      "criteria_rated": 55
+    },
+    "11-wcag22-new-criteria": {
+      "assertions": [
+        {
+          "type": "tp",
+          "sc": "2.5.7",
+          "text": "Drag-only sortable list",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.5.7",
+          "text": "Drag-only slider",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "3.3.7",
+          "text": "Billing re-asks shipping address",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "3.3.8",
+          "text": "Password blocks paste / password managers",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "3.3.8",
+          "text": "Transcription CAPTCHA without alternative",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.1.1",
+          "text": "Wishlist/slider not keyboard operable",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "4.1.2",
+          "text": "Slider without role/value",
+          "passed": true
+        },
+        {
+          "type": "tn",
+          "sc": "2.5.7",
+          "text": "Drop zone has Browse button",
+          "passed": true
+        }
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "1.1.1",
+          "element": "#captcha-img",
+          "description": "Text CAPTCHA has only a purpose description (\"Security check image\") and no alternative form (audio or other modality) as required by the CAPTCHA exception."
+        },
+        {
+          "sc": "4.1.2",
+          "element": "#wishlist li",
+          "description": "Draggable items expose no state or operability to assistive technology (no instructions for AT, no reorder control)."
+        }
+      ],
+      "criteria_rated": 55
+    },
+    "12-operable-understandable": {
+      "assertions": [
+        {
+          "type": "tp",
+          "sc": "2.4.2",
+          "text": "Empty <title>",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.4.1",
+          "text": "No skip link or landmarks",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.2.1",
+          "text": "Hard session timeout",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.2.2",
+          "text": "Auto-advancing carousel",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.1.4",
+          "text": "Single-character shortcuts",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "3.2.2",
+          "text": "Select navigates on change",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "1.3.5",
+          "text": "Personal-data inputs without autocomplete",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "2.5.2",
+          "text": "Delete on mousedown",
+          "passed": true
+        },
+        {
+          "type": "tp",
+          "sc": "3.3.3",
+          "text": "Error message without suggestion",
+          "passed": true
+        },
+        {
+          "type": "tn",
+          "sc": "2.4.4",
+          "text": "Descriptive annual report link",
+          "passed": true
+        }
+      ],
+      "meta": {
+        "report_exists": true,
+        "findings_json_valid": true,
+        "all_55_criteria_rated": true,
+        "contrast_ratios_present": true
+      },
+      "unmatched_fail_findings": [
+        {
+          "sc": "3.1.2",
+          "element": "#lang option[value=es], option[value=pt]",
+          "description": "'Español' and 'Português' option texts are in other languages but have no lang attribute (lang=\"es\", lang=\"pt\")."
+        }
+      ],
+      "criteria_rated": 55
     }
   }
 }

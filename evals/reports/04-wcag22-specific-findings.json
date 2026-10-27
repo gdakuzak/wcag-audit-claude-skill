@@ -1,0 +1,292 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "warning"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "fail"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "na"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.5",
+      "status": "fail",
+      "element": "#name",
+      "description": "'Your Name' input collects the user's name but has no autocomplete=\"name\"."
+    },
+    {
+      "sc": "1.4.1",
+      "status": "warning",
+      "element": ".pagination-dot.active",
+      "description": "The current image is indicated only by dot fill color (#333333 vs #cccccc) with no shape/size difference or text cue; verify an additional non-color indicator."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".pagination-dot",
+      "description": "Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".star-rating button",
+      "description": "Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".form-field input, .form-field textarea",
+      "description": "Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary."
+    },
+    {
+      "sc": "2.4.11",
+      "status": "fail",
+      "element": ".bottom-bar",
+      "description": "position:fixed bottom bar (z-index 50, ~70px tall) with no scroll-padding-bottom; when tabbing through the long review form, a focused field scrolled to the viewport bottom is entirely hidden behind it. body padding-bottom only helps at end of page."
+    },
+    {
+      "sc": "2.5.8",
+      "status": "fail",
+      "element": ".pagination-dot",
+      "description": "Pagination buttons are 8x8px with 6px gaps (centers 14px apart); 24px circles overlap neighbouring targets."
+    },
+    {
+      "sc": "2.5.8",
+      "status": "fail",
+      "element": ".icon-action",
+      "description": "Bookmark/Share/Flag/Print buttons are 18x18px with 4px gaps; below 24x24 and insufficient spacing."
+    },
+    {
+      "sc": "2.5.8",
+      "status": "fail",
+      "element": ".star-rating button",
+      "description": "Star rating buttons are 14x14px with 2px gaps; below 24x24 and insufficient spacing."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".pagination-dot.active",
+      "description": "The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "warning",
+      "element": ".star-rating",
+      "description": "Star rating is five independent buttons with no group role (radiogroup) or state (aria-pressed/aria-checked) to expose the selected rating; verify state once behavior is implemented."
+    }
+  ]
+}

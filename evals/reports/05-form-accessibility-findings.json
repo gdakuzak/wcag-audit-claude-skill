@@ -1,0 +1,304 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "na"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": "input[type=email]",
+      "description": "Email input has no associated <label> (placeholder only), so its purpose is not programmatically determinable."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": "input[type=tel]",
+      "description": "Phone input has no associated <label> (placeholder only)."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".custom-select / label (Country)",
+      "description": "The Country <label> has no for attribute and is not associated with the custom <div> select."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": "input[name=acct]",
+      "description": "Account Type radio group is labeled by a <p>, not grouped with <fieldset>/<legend>; the group label is not programmatically associated."
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": ".required-star",
+      "description": "Required fields are indicated only by a visual asterisk; inputs have no required/aria-required attribute."
+    },
+    {
+      "sc": "1.3.5",
+      "status": "fail",
+      "element": "#fullname, input[type=email], input[type=tel], #password",
+      "description": "Inputs collecting the user's own data have no autocomplete tokens (name, email, tel, new-password)."
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": "input::placeholder",
+      "description": "Placeholder text #bbbbbb on #ffffff has 1.92:1 contrast; needs 4.5:1 (it is the only label for email/phone)."
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": ".required-star",
+      "description": "Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000)."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".form-group input, textarea, .custom-select-trigger",
+      "description": "Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1."
+    },
+    {
+      "sc": "2.1.1",
+      "status": "fail",
+      "element": ".custom-select-trigger",
+      "description": "Custom country dropdown is a <div onclick> without tabindex or keyboard handlers; it cannot be opened or used from the keyboard, and .custom-select-option items have no handlers at all."
+    },
+    {
+      "sc": "3.3.1",
+      "status": "fail",
+      "element": ".error-msg",
+      "description": "Password error text is not linked to #password via aria-describedby and the field has no aria-invalid; the error is only visually adjacent."
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail",
+      "element": "input[type=email], input[type=tel]",
+      "description": "Email and phone fields use placeholder as the only label; the placeholder disappears on input and there is no visible label."
+    },
+    {
+      "sc": "4.1.2",
+      "status": "fail",
+      "element": ".custom-select-trigger",
+      "description": "Custom select exposes no role, accessible name, or expanded/selected state (needs role=combobox/listbox, aria-expanded, role=option, aria-selected) \u2014 or use a native <select>."
+    }
+  ]
+}

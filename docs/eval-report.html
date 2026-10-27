@@ -221,332 +221,72 @@
     .kpi .kpi-value { font-size: 1.8rem; }
     .kpi-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  td.c, th.c { text-align: center; }
+  .lang-switch { float: right; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
+  .method li { margin: 0 0 10px 20px; max-width: 720px; }
+  code { font-family: var(--font-mono); font-size: 0.85em; }
 </style>
 </head>
 <body>
-<div class="page">
-
-  <!-- Header -->
-  <div class="header">
-    <div class="label">Evaluation Report</div>
+<main class="page">
+  <header class="header">
+    <a class="lang-switch" href="eval-report.pt-BR.html" hreflang="pt-BR">Português</a>
+    <div class="label">Evaluation report</div>
     <h1>WCAG 2.2 Audit Skill</h1>
-    <div class="subtitle">Comprehensive evaluation across 10 purpose-built test pages covering all 28 WCAG 2.2 Level AA success criteria, designed to verify the skill meets the bar for legal compliance applications.</div>
+    <div class="subtitle">Blind evaluation of skill v1.1.0 across 12 test pages with 67 documented failures and 22 should-pass items, graded strictly against the ground truth.</div>
     <div class="meta">
-      <span>Date: 2026-03-05</span>
-      <span>Iteration: 2</span>
-      <span>Test Pages: 10</span>
-      <span>Ground Truth Issues: 56</span>
+      <span>Date: 2026-10-27</span><span>Skill version: 1.1.0</span>
+      <span>Test pages: 12</span><span>Known failures: 67</span>
     </div>
-  </div>
+  </header>
 
-  <!-- KPI Summary -->
   <div class="kpi-grid">
-    <div class="kpi kpi--green">
-      <div class="kpi-label">True Positive Rate</div>
-      <div class="kpi-value">100%</div>
-      <div class="kpi-detail">56 of 56 known failures detected</div>
-    </div>
-    <div class="kpi kpi--green">
-      <div class="kpi-label">False Negatives</div>
-      <div class="kpi-value">0</div>
-      <div class="kpi-detail">No real issues were missed</div>
-    </div>
-    <div class="kpi kpi--green">
-      <div class="kpi-label">False Positives</div>
-      <div class="kpi-value">0</div>
-      <div class="kpi-detail">Verified by manual investigation</div>
-    </div>
-    <div class="kpi kpi--gold">
-      <div class="kpi-label">SC Coverage</div>
-      <div class="kpi-value">28</div>
-      <div class="kpi-detail">All WCAG 2.2 AA criteria tested</div>
-    </div>
+    <div class="kpi kpi--gold"><div class="kpi-label">Detection rate</div>
+      <div class="kpi-value">98.5%</div><div class="kpi-detail">66 of 67 known failures reported as fails</div></div>
+    <div class="kpi kpi--gold"><div class="kpi-label">Missed</div>
+      <div class="kpi-value">1</div><div class="kpi-detail">Known failures not reported</div></div>
+    <div class="kpi kpi--gold"><div class="kpi-label">False positives</div>
+      <div class="kpi-value">2</div><div class="kpi-detail">0 should-pass items failed + 2 other</div></div>
+    <div class="kpi kpi--accent"><div class="kpi-label">Criteria rated</div>
+      <div class="kpi-value">12/12</div><div class="kpi-detail">Pages where all 55 criteria got a status</div></div>
   </div>
 
-  <!-- Per-Test Results -->
-  <div class="section-label">Per-Test Results</div>
-  <h2>Test Page Breakdown</h2>
-  <p class="lead">Each test page was constructed with documented ground truth — known failures and known-passing items — embedded in HTML comments. The skill was run independently on each page, and its report was graded against the ground truth.</p>
+  <div class="section-label">Methodology</div>
+  <h2>How this evaluation was run</h2>
+  <ul class="method"><li><strong>Blind.</strong> Each page was audited from a copy with every HTML, CSS and JS comment removed, a neutral <code>&lt;title&gt;</code> and a neutral file name (<code>page-NN.html</code>). The previous evaluation shipped the answers inside the pages (<code>&lt;!-- FAIL: … --&gt;</code>).</li><li><strong>Independent auditors.</strong> Three fresh agents, four pages each, could read only the skill folder and their pages — never the ground truth or the grader.</li><li><strong>Strict grading.</strong> A known failure counts only if the audit filed a <em>fail</em> finding under an accepted success criterion that names the element. The old grader matched keywords anywhere in the report.</li><li><strong>Manual review.</strong> Every fail finding that matches no known failure was read and classified as a genuine issue the ground truth missed, or as a false positive.</li></ul>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th style="width:30%">Test Page</th>
-          <th>Focus Area</th>
-          <th style="text-align:center">Issues</th>
-          <th style="text-align:center">Detected</th>
-          <th style="text-align:center">Rate</th>
-          <th style="text-align:center">Result</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="animation-delay:0.05s">
-          <td style="font-weight:600">01 — Subtle Contrast</td>
-          <td>Borderline contrast ratios, rgba overlays, non-text contrast</td>
-          <td style="text-align:center">5</td>
-          <td style="text-align:center">5</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.1s">
-          <td style="font-weight:600">02 — Semantic Structure</td>
-          <td>Fake headings, missing landmarks, link text, lang</td>
-          <td style="text-align:center">8</td>
-          <td style="text-align:center">8</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.15s">
-          <td style="font-weight:600">03 — Keyboard & Focus</td>
-          <td>Keyboard traps, focus visibility, tabindex, sticky headers</td>
-          <td style="text-align:center">7</td>
-          <td style="text-align:center">7</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.2s">
-          <td style="font-weight:600">04 — WCAG 2.2 Specific</td>
-          <td>Target size (2.5.8), focus not obscured (2.4.11)</td>
-          <td style="text-align:center">4</td>
-          <td style="text-align:center">4</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.25s">
-          <td style="font-weight:600">05 — Form Accessibility</td>
-          <td>Missing labels, radio groups, error association, ARIA</td>
-          <td style="text-align:center">7</td>
-          <td style="text-align:center">7</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.3s">
-          <td style="font-weight:600">06 — Media Failures</td>
-          <td>Alt text, image of text, captions, transcripts</td>
-          <td style="text-align:center">7</td>
-          <td style="text-align:center">7</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.35s">
-          <td style="font-weight:600">07 — Fully Compliant</td>
-          <td>False positive test: dark theme, large buttons, proper ARIA</td>
-          <td style="text-align:center">0*</td>
-          <td style="text-align:center">—</td>
-          <td style="text-align:center">—</td>
-          <td style="text-align:center"><span class="badge badge--info">Note</span></td>
-        </tr>
-        <tr style="animation-delay:0.4s">
-          <td style="font-weight:600">08 — Dynamic Content</td>
-          <td>Custom widgets, ARIA roles/states, status messages</td>
-          <td style="text-align:center">6</td>
-          <td style="text-align:center">6</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.45s">
-          <td style="font-weight:600">09 — Color-Only Info</td>
-          <td>Color as sole indicator for links, status, errors, charts</td>
-          <td style="text-align:center">6</td>
-          <td style="text-align:center">6</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-        <tr style="animation-delay:0.5s">
-          <td style="font-weight:600">10 — Responsive & Reflow</td>
-          <td>Reflow, text resize, text spacing, fixed layouts</td>
-          <td style="text-align:center">6</td>
-          <td style="text-align:center">6</td>
-          <td style="text-align:center">100%</td>
-          <td style="text-align:center"><span class="badge badge--pass">Pass</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="section-label">Per-page results</div>
+  <h2>Test page breakdown</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Test page</th><th>Focus</th><th class="c">Known</th><th class="c">Detected</th><th class="c">Should-pass OK</th><th class="c">Extra genuine</th><th class="c">False pos.</th><th class="c">Result</th></tr></thead>
+    <tbody><tr><td style='font-weight:600'>01 — Subtle contrast</td><td>Borderline ratios, rgba overlays, non-text contrast</td><td class='c'>3</td><td class='c'>3</td><td class='c'>4/4</td><td class='c'>0</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>02 — Semantic structure</td><td>Fake headings, div navigation, tables, lang, link text</td><td class='c'>8</td><td class='c'>8</td><td class='c'>1/1</td><td class='c'>5</td><td class='c'>1</td><td class='c'><span class="badge badge--warn">Partial</span></td></tr><tr><td style='font-weight:600'>03 — Keyboard &amp; focus</td><td>Keyboard traps, focus visibility, tabindex, sticky header</td><td class='c'>7</td><td class='c'>7</td><td class='c'>1/1</td><td class='c'>11</td><td class='c'>1</td><td class='c'><span class="badge badge--warn">Partial</span></td></tr><tr><td style='font-weight:600'>04 — WCAG 2.2 targets &amp; focus</td><td>Target size (2.5.8), focus not obscured (2.4.11)</td><td class='c'>4</td><td class='c'>4</td><td class='c'>2/2</td><td class='c'>5</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>05 — Forms</td><td>Labels, radio groups, error association, custom select</td><td class='c'>7</td><td class='c'>7</td><td class='c'>0/0</td><td class='c'>4</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>06 — Media</td><td>Alt text, image of text, captions, transcripts</td><td class='c'>7</td><td class='c'>7</td><td class='c'>1/1</td><td class='c'>3</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>07 — Fully compliant</td><td>False-positive test: dark theme, custom focus, large targets</td><td class='c'>0</td><td class='c'>0</td><td class='c'>5/5</td><td class='c'>3</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>08 — Dynamic content</td><td>Widgets, ARIA states, status messages, reordering</td><td class='c'>7</td><td class='c'>7</td><td class='c'>0/0</td><td class='c'>4</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>09 — Color-only information</td><td>Links, required fields, status, charts, errors</td><td class='c'>4</td><td class='c'>3</td><td class='c'>3/3</td><td class='c'>3</td><td class='c'>0</td><td class='c'><span class="badge badge--warn">Partial</span></td></tr><tr><td style='font-weight:600'>10 — Responsive &amp; reflow</td><td>Reflow, text resize, text spacing, fixed layouts</td><td class='c'>4</td><td class='c'>4</td><td class='c'>3/3</td><td class='c'>0</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>11 — New in WCAG 2.2</td><td>Dragging (2.5.7), redundant entry (3.3.7), accessible auth (3.3.8)</td><td class='c'>7</td><td class='c'>7</td><td class='c'>1/1</td><td class='c'>2</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr><tr><td style='font-weight:600'>12 — Operable &amp; understandable</td><td>Timing, bypass, title, shortcuts, on input, autocomplete, errors</td><td class='c'>9</td><td class='c'>9</td><td class='c'>1/1</td><td class='c'>1</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Pass</span></td></tr></tbody>
+  </table></div>
 
-  <p style="font-size:0.85rem; color:var(--text-dim);">* Page 07 was designed with 0 intended failures, but the skill correctly identified real SC 1.4.11 non-text contrast failures in the dark theme's border colors that the test designer had missed. This is a <strong>positive finding</strong> — the skill caught genuine issues beyond expectations.</p>
+  <div class="section-label">Misses</div>
+  <h2>Known failures the audit did not report</h2>
+  <div class='detail-card'><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 1.4.1</span> Links only distinguished by color</div></div>
 
-  <!-- True Negative Checks -->
-  <div class="section-label">False Positive Analysis</div>
-  <h2>True Negative Verification</h2>
-  <p class="lead">Across the 10 test pages, 8 items were specifically designed to be compliant and should NOT be flagged. These verify the skill doesn't over-report issues.</p>
+  <div class="section-label">False positives</div>
+  <h2>Reported failures that are not real</h2>
+  <div class='detail-card'><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.3.1</span> <code>body &gt; .container</code> — Landmarks are best practice; missing &lt;main&gt; is not a 1.3.1 failure on its own.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.3.1</span> <code>.sticky-header, .content</code> — Landmarks are best practice; missing &lt;header&gt;/&lt;main&gt; is not a 1.3.1 failure on its own.</div></div>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Test</th>
-          <th>Should-Pass Item</th>
-          <th>Criterion</th>
-          <th style="text-align:center">Automated Check</th>
-          <th style="text-align:center">Manual Verification</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>01</td>
-          <td>#2d6a4f on #ffffff (7.08:1 passes)</td>
-          <td><span class="sc-tag">1.4.3</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>48px button (large enough target)</td>
-          <td><span class="sc-tag">2.5.8</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>06</td>
-          <td>Decorative divider with alt="" and role="presentation"</td>
-          <td><span class="sc-tag">1.1.1</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>07</td>
-          <td>Dark theme text contrast (all passing pairs)</td>
-          <td><span class="sc-tag">1.4.3</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>07</td>
-          <td>Custom gold focus styles (visible, sufficient)</td>
-          <td><span class="sc-tag">2.4.7</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>07</td>
-          <td>44px+ buttons (above minimum target size)</td>
-          <td><span class="sc-tag">2.5.8</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>09</td>
-          <td>Badges using both color AND text labels</td>
-          <td><span class="sc-tag">1.4.1</span></td>
-          <td style="text-align:center"><span class="badge badge--fail">Inconclusive</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>Responsive card with max-width:100%</td>
-          <td><span class="sc-tag">1.4.10</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-          <td style="text-align:center"><span class="badge badge--pass">Correct</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="section-label">Beyond the ground truth</div>
+  <h2>Genuine issues the test pages didn't document</h2>
+  <div class='detail-card'><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.3.5</span> <code>input[type=text], input[type=email]</code> — Inputs collecting the user&#x27;s name and email lack autocomplete=&quot;name&quot; and autocomplete=&quot;email&quot;.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.4.3</span> <code>footer</code> — Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input, .form-group textarea</code> — Field border #cccccc on #fefefe = 1.59:1, below 3:1.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.4.11</span> <code>.toggle</code> — Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 2.1.1</span> <code>.toggle</code> — Toggle is a &lt;div onclick&gt; with no tabindex and no keydown handler; cannot be operated by keyboard.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.3.1</span> <code>.modal input</code> — Modal &#x27;Display name&#x27; and &#x27;Email&#x27; inputs have no associated &lt;label&gt;; the placeholder is the only labelling, so the field/label relationship is not programmatic.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.3.5</span> <code>.modal input[type=email], .modal input[type=text]</code> — User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=&quot;nickname&quot;/&quot;name&quot; and &quot;email&quot;).</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.4.3</span> <code>footer</code> — Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1).</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.4.11</span> <code>.search-input</code> — Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.4.11</span> <code>.modal input</code> — Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1).</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 2.4.3</span> <code>#modal-trap</code> — Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the &#x27;Open Settings&#x27; trigger; focus stays behind the overlay.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 3.3.2</span> <code>.modal input</code> — Modal inputs &#x27;Display name&#x27; and &#x27;Email&#x27; have placeholder-only labels that disappear when typing.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 3.3.2</span> <code>.search-input</code> — Search field has no visible label, only placeholder &#x27;Search tasks...&#x27;.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 4.1.2</span> <code>.card-link</code> — Clickable cards behave as links but expose no role (link) to assistive technology.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 4.1.2</span> <code>.expand-btn</code> — Disclosure trigger is a &lt;div&gt; with no role=button and no aria-expanded.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 4.1.2</span> <code>#modal-trap .modal</code> — Settings modal has no role=&quot;dialog&quot;, no aria-modal=&quot;true&quot; and no accessible name (aria-labelledby to its h3).</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.3.5</span> <code>#name</code> — &#x27;Your Name&#x27; input collects the user&#x27;s name but has no autocomplete=&quot;name&quot;.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.4.11</span> <code>.pagination-dot</code> — Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.4.11</span> <code>.star-rating button</code> — Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-field input, .form-field textarea</code> — Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 4.1.2</span> <code>.pagination-dot.active</code> — The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected.</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.3.1</span> <code>.custom-select / label (Country)</code> — The Country &lt;label&gt; has no for attribute and is not associated with the custom &lt;div&gt; select.</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.3.5</span> <code>#fullname, input[type=email], input[type=tel], #password</code> — Inputs collecting the user&#x27;s own data have no autocomplete tokens (name, email, tel, new-password).</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.4.3</span> <code>.required-star</code> — Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000).</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input, textarea, .custom-select-trigger</code> — Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.</div><div class='check-row'><span class='sc-tag'>06</span> <span class='sc-tag'>SC 1.2.3</span> <code>video</code> — No audio description or full media alternative (transcript) for the tutorial video.</div><div class='check-row'><span class='sc-tag'>06</span> <span class='sc-tag'>SC 1.2.5</span> <code>video</code> — No audio description track (&lt;track kind=&quot;descriptions&quot;&gt; or described version) for the tutorial video.</div><div class='check-row'><span class='sc-tag'>06</span> <span class='sc-tag'>SC 1.4.10</span> <code>video</code> — &lt;video width=&quot;600&quot; height=&quot;340&quot;&gt; is not constrained by CSS (max-width applies only to img), causing horizontal scroll at 320px viewport.</div><div class='check-row'><span class='sc-tag'>07</span> <span class='sc-tag'>SC 1.3.5</span> <code>#contact-name</code> — Name input has no autocomplete=&quot;name&quot; (name=&quot;name&quot; does not identify input purpose).</div><div class='check-row'><span class='sc-tag'>07</span> <span class='sc-tag'>SC 1.3.5</span> <code>#contact-email</code> — Email input has no autocomplete=&quot;email&quot;.</div><div class='check-row'><span class='sc-tag'>07</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input, .form-group textarea, .form-group select</code> — Field border #4a4a6a is 2.01:1 vs page background #1a1a2e and 1.88:1 vs field fill #16213e; the fill itself is 1.07:1 vs the page, so the input boundary is below 3:1. Suggested border: #6b6b85 or ligh</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 1.3.1</span> <code>.toggle-wrapper span</code> — Visible text &#x27;Email notifications&#x27; is a plain &lt;span&gt; not programmatically associated with the .toggle control (no label/aria-labelledby).</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 1.4.11</span> <code>.toggle</code> — Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker.</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 2.1.1</span> <code>.toggle</code> — Email notifications toggle is a &lt;div&gt; with onclick only; not focusable and no Space/Enter handling.</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 2.1.1</span> <code>.tab</code> — Tabs are &lt;div&gt;s with onclick only; not focusable, no Enter/Space/arrow-key support.</div><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 1.4.3</span> <code>.badge.pending</code> — Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1.</div><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input</code> — Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.</div><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 3.3.3</span> <code>#deadline</code> — No suggestion for correcting the Deadline error (e.g. &#x27;Enter a date as MM/DD/YYYY&#x27;).</div><div class='check-row'><span class='sc-tag'>11</span> <span class='sc-tag'>SC 1.1.1</span> <code>#captcha-img</code> — Text CAPTCHA has only a purpose description (&quot;Security check image&quot;) and no alternative form (audio or other modality) as required by the CAPTCHA exception.</div><div class='check-row'><span class='sc-tag'>11</span> <span class='sc-tag'>SC 4.1.2</span> <code>#wishlist li</code> — Draggable items expose no state or operability to assistive technology (no instructions for AT, no reorder control).</div><div class='check-row'><span class='sc-tag'>12</span> <span class='sc-tag'>SC 3.1.2</span> <code>#lang option[value=es], option[value=pt]</code> — &#x27;Español&#x27; and &#x27;Português&#x27; option texts are in other languages but have no lang attribute (lang=&quot;es&quot;, lang=&quot;pt&quot;).</div></div>
 
-  <p>The automated grading script reported 7 of 8 true-negative checks as "inconclusive" because its text-matching heuristics couldn't reliably confirm pass/fail verdicts for specific items. A manual investigation of all 10 audit reports confirmed that <strong>every should-pass item was correctly handled</strong> — not flagged as a failure in any report. The only exception was Page 07, where the skill found <em>real</em> SC 1.4.11 border contrast failures that weren't in the original ground truth.</p>
+  <div class="section-label">Coverage</div>
+  <h2>Success criteria exercised by known failures</h2>
+  <p>33 of the 55 WCAG 2.2 A + AA criteria have at least one known failure in the suite. The rest are only checked for a status (pass / fail / N/A) on every page.</p>
+  <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px"><span class="sc-tag">1.1.1</span><span class="sc-tag">1.2.1</span><span class="sc-tag">1.2.2</span><span class="sc-tag">1.3.1</span><span class="sc-tag">1.3.2</span><span class="sc-tag">1.3.5</span><span class="sc-tag">1.4.1</span><span class="sc-tag">1.4.3</span><span class="sc-tag">1.4.5</span><span class="sc-tag">1.4.10</span><span class="sc-tag">1.4.11</span><span class="sc-tag">1.4.12</span><span class="sc-tag">2.1.1</span><span class="sc-tag">2.1.4</span><span class="sc-tag">2.2.1</span><span class="sc-tag">2.2.2</span><span class="sc-tag">2.4.1</span><span class="sc-tag">2.4.2</span><span class="sc-tag">2.4.3</span><span class="sc-tag">2.4.7</span><span class="sc-tag">2.4.11</span><span class="sc-tag">2.5.2</span><span class="sc-tag">2.5.7</span><span class="sc-tag">2.5.8</span><span class="sc-tag">3.1.2</span><span class="sc-tag">3.2.2</span><span class="sc-tag">3.3.1</span><span class="sc-tag">3.3.2</span><span class="sc-tag">3.3.3</span><span class="sc-tag">3.3.7</span><span class="sc-tag">3.3.8</span><span class="sc-tag">4.1.2</span><span class="sc-tag">4.1.3</span></div>
+  <p style="font-size:0.88rem;color:var(--text-dim)">Not exercised by any known failure: 1.2.3, 1.2.4, 1.2.5, 1.3.3, 1.3.4, 1.4.2, 1.4.4, 1.4.13, 2.1.2, 2.3.1, 2.4.4, 2.4.5, 2.4.6, 2.5.1, 2.5.3, 2.5.4, 3.1.1, 3.2.1, 3.2.3, 3.2.4, 3.2.6, 3.3.4</p>
 
-  <!-- Criteria Coverage -->
-  <div class="section-label">Criteria Coverage</div>
-  <h2>WCAG 2.2 Success Criteria Tested</h2>
-  <p class="lead">The test suite covers all four WCAG principles and includes the two new WCAG 2.2 criteria (SC 2.4.11 and SC 2.5.8).</p>
+  <div class="section-label">Compared with v1.0</div>
+  <h2>Why the numbers changed</h2>
+  <p>The v1.0 report claimed 100% (56/56), but the auditor could read the answers in the page comments, and the pages documented 59 failures, not 56. Graded blind, 8 of those 59 turned out to be wrong in the ground truth itself: e.g. .subtitle #757575 is 4.61:1, not 4.48:1; the rgba overlay is 7.09:1; the "modal trap" doesn't trap focus; the 900px table sits in a scroll container. v1.0 "detected" all of them, including a 4.48:1 ratio that only existed in the comment. They are now should-pass items. v1.1 adds 55-criteria coverage and two new pages (16 more known failures).</p>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Principle</th>
-          <th>Criteria Tested</th>
-          <th>Test Pages</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="font-weight:600">1 — Perceivable</td>
-          <td>
-            <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;">
-              <span class="sc-tag">1.1.1</span><span class="sc-tag">1.2.1</span><span class="sc-tag">1.2.2</span>
-              <span class="sc-tag">1.3.1</span><span class="sc-tag">1.3.2</span><span class="sc-tag">1.4.1</span>
-              <span class="sc-tag">1.4.3</span><span class="sc-tag">1.4.4</span><span class="sc-tag">1.4.5</span>
-              <span class="sc-tag">1.4.10</span><span class="sc-tag">1.4.11</span><span class="sc-tag">1.4.12</span>
-            </div>
-          </td>
-          <td style="font-size:0.82rem; color:var(--text-dim);">01, 02, 03, 05, 06, 09, 10</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600">2 — Operable</td>
-          <td>
-            <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;">
-              <span class="sc-tag">2.1.1</span><span class="sc-tag">2.1.2</span>
-              <span class="sc-tag">2.4.3</span><span class="sc-tag">2.4.4</span><span class="sc-tag">2.4.7</span>
-              <span class="sc-tag">2.4.11</span><span class="sc-tag">2.5.8</span>
-            </div>
-          </td>
-          <td style="font-size:0.82rem; color:var(--text-dim);">03, 04, 08</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600">3 — Understandable</td>
-          <td>
-            <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;">
-              <span class="sc-tag">3.1.2</span><span class="sc-tag">3.3.1</span><span class="sc-tag">3.3.2</span>
-            </div>
-          </td>
-          <td style="font-size:0.82rem; color:var(--text-dim);">02, 05</td>
-        </tr>
-        <tr>
-          <td style="font-weight:600">4 — Robust</td>
-          <td>
-            <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;">
-              <span class="sc-tag">4.1.2</span><span class="sc-tag">4.1.3</span>
-            </div>
-          </td>
-          <td style="font-size:0.82rem; color:var(--text-dim);">02, 05, 08</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Notable Finding -->
-  <div class="section-label">Notable Finding</div>
-  <h2>Skill Exceeded Ground Truth</h2>
-  <p>Test page 07 ("Fully Compliant") was specifically designed with zero accessibility failures to test for false positives. The skill correctly identified SC 1.4.11 non-text contrast failures in the page's dark-theme border colors that the test designer had overlooked:</p>
-
-  <div class="detail-card" style="margin:20px 0">
-    <h4><span class="badge badge--info">SC 1.4.11</span> Border contrast failures found by audit</h4>
-    <div style="margin-top:10px; font-size:0.85rem; font-family:var(--font-mono);">
-      <div class="check-row"><span class="check-icon check-icon--fail">&times;</span> #1a5276 on #0f3460 = 1.50:1 (needs 3:1)</div>
-      <div class="check-row"><span class="check-icon check-icon--fail">&times;</span> #4a4a6a on #16213e = 1.88:1 (needs 3:1)</div>
-      <div class="check-row"><span class="check-icon check-icon--fail">&times;</span> #2a2a4a on #16213e = 1.16:1 (needs 3:1)</div>
-      <div class="check-row"><span class="check-icon check-icon--fail">&times;</span> #2a2a4a on #1a1a2e = 1.24:1 (needs 3:1)</div>
-    </div>
-    <p style="margin-top:12px; font-size:0.88rem;">These are genuine failures — the skill found real issues that a human reviewer missed during test construction. This demonstrates the audit's thoroughness, particularly for programmatic contrast checking where visual inspection is unreliable.</p>
-  </div>
-
-  <!-- Confidence Assessment -->
-  <div class="confidence-card">
-    <h3 style="color:var(--gold); font-family:var(--font-mono); font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase;">Confidence Assessment</h3>
-    <h2 style="margin-top:8px;">Suitable for Legal Compliance Applications</h2>
-    <p style="margin-top:12px;">Based on 10 diverse test pages with 56 documented failures spanning all 28 WCAG 2.2 AA success criteria, the audit skill achieved a <strong>100% true positive detection rate</strong> with <strong>zero false positives</strong> confirmed through manual investigation. The skill also detected genuine issues beyond the test designer's ground truth.</p>
-
-    <p>The skill's 5-phase methodology — source acquisition, CSS color extraction, programmatic contrast verification, manual criteria review, and structured report generation — provides defense-in-depth against the most common failure mode: missed contrast issues that require mathematical computation.</p>
-
-    <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
-      <div class="check-row"><span class="check-icon check-icon--pass">&check;</span> <strong>Zero false negatives</strong> across all test categories</div>
-      <div class="check-row"><span class="check-icon check-icon--pass">&check;</span> <strong>Zero false positives</strong> after manual verification</div>
-      <div class="check-row"><span class="check-icon check-icon--pass">&check;</span> <strong>Caught issues beyond ground truth</strong> on the "fully compliant" page</div>
-      <div class="check-row"><span class="check-icon check-icon--pass">&check;</span> <strong>Programmatic contrast verification</strong> via Python script, not visual estimation</div>
-      <div class="check-row"><span class="check-icon check-icon--pass">&check;</span> <strong>Full WCAG 2.2 coverage</strong> including new SC 2.4.11 and SC 2.5.8</div>
-    </div>
-  </div>
-
-  <!-- Limitations -->
-  <div class="disclaimer">
-    <strong>Important Limitations:</strong> This skill performs static code analysis. It cannot test dynamic interactions in a live browser (e.g., actual keyboard navigation, screen reader behavior, or JavaScript-driven state changes). It analyzes CSS and HTML patterns to identify <em>likely</em> keyboard, focus, and dynamic content issues from the source code. For full compliance verification, combine this audit with manual testing using assistive technologies.
-  </div>
-
-  <div class="footer">
-    <p>WCAG 2.2 Audit Skill Evaluation Report &mdash; Generated 2026-03-05 &mdash; 10 test pages, 56 ground truth failures, 100% detection rate</p>
-  </div>
-</div>
+  <div class="disclaimer"><strong>Limitations:</strong> Single-page audits are static code analysis — no real keyboard, screen reader or JavaScript execution. Some class names in the older pages still hint at the issue (e.g. <code>.fake-h1</code>). The Storybook mode is not covered by this suite.</div>
+  <footer class="footer"><p>WCAG 2.2 Audit Skill evaluation — generated 2026-10-27 — 12 pages, 67 known failures, 98.5% detection</p></footer>
+</main>
 </body>
 </html>

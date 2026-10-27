@@ -7,14 +7,14 @@
 <!--
 GROUND TRUTH - Known WCAG 2.2 AA failures in this page:
 1. SC 2.1.1 FAIL: .card-link uses onclick on a div — not keyboard accessible (no tabindex, no keydown)
-2. SC 2.1.2 FAIL: #modal-trap has a keyboard trap — no Escape handler, focus can't leave
+2. SC 2.1.2 PASS (corrected in v1.1): #modal-trap is not a keyboard trap — no script holds focus, Tab moves out (focus not moved into it is a 2.4.3 issue)
 3. SC 2.4.7 FAIL: Global outline:none on interactive elements without replacement
 4. SC 2.4.3 FAIL: tabindex="5" on search input disrupts natural tab order
 5. SC 2.4.7 FAIL: .custom-dropdown has no focus indicator at all
 6. SC 2.4.11 FAIL: .sticky-header (z-index:100, position:fixed) obscures focused elements beneath it
 7. SC 2.1.1 FAIL: .expand-btn uses onmouseover with no keyboard equivalent
 8. SC 1.4.11 FAIL: Focus ring on .subtle-focus is 1px #e0e0e0 on #ffffff = 1.26:1 (needs 3:1)
-Total: 8 failures
+Total: 7 failures, 1 should-pass item
 -->
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -144,7 +144,7 @@ Total: 8 failures
   </div>
 </div>
 
-<!-- FAIL: Modal keyboard trap — no Escape handler, can't tab out -->
+<!-- PASS 2.1.2: not a trap, Tab leaves the modal (focus management is a 2.4.3 issue) -->
 <div class="modal-overlay" id="modal-trap">
   <div class="modal">
     <h3>Settings</h3>

@@ -1,0 +1,286 @@
+{
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "1.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.4",
+      "status": "na"
+    },
+    {
+      "sc": "1.2.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "1.3.2",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.3",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.3.5",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.1",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.2",
+      "status": "na"
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.4",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.5",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.10",
+      "status": "warning"
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail"
+    },
+    {
+      "sc": "1.4.12",
+      "status": "pass"
+    },
+    {
+      "sc": "1.4.13",
+      "status": "na"
+    },
+    {
+      "sc": "2.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.1.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.2.2",
+      "status": "na"
+    },
+    {
+      "sc": "2.3.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.1",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.5",
+      "status": "na"
+    },
+    {
+      "sc": "2.4.6",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.7",
+      "status": "pass"
+    },
+    {
+      "sc": "2.4.11",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.1",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.2",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.3",
+      "status": "pass"
+    },
+    {
+      "sc": "2.5.4",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.7",
+      "status": "na"
+    },
+    {
+      "sc": "2.5.8",
+      "status": "na"
+    },
+    {
+      "sc": "3.1.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.1",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.2",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.3",
+      "status": "na"
+    },
+    {
+      "sc": "3.2.4",
+      "status": "pass"
+    },
+    {
+      "sc": "3.2.6",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.1",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.3",
+      "status": "fail"
+    },
+    {
+      "sc": "3.3.4",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.7",
+      "status": "na"
+    },
+    {
+      "sc": "3.3.8",
+      "status": "na"
+    },
+    {
+      "sc": "4.1.2",
+      "status": "pass"
+    },
+    {
+      "sc": "4.1.3",
+      "status": "na"
+    }
+  ],
+  "findings": [
+    {
+      "sc": "1.3.1",
+      "status": "fail",
+      "element": "label.required-label",
+      "description": "Required status of #project-name and #deadline is conveyed only visually (red label); inputs have no required/aria-required attribute."
+    },
+    {
+      "sc": "1.4.1",
+      "status": "fail",
+      "element": "label.required-label",
+      "description": "Required fields are distinguished from optional ones only by red label color #d32f2f vs #1a1a1a; no asterisk or 'required' text."
+    },
+    {
+      "sc": "1.4.1",
+      "status": "fail",
+      "element": "#deadline.error",
+      "description": "The invalid Deadline field is indicated only by a red border (#d32f2f); no icon or text."
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": ".success-text",
+      "description": "'Budget is on track' text #4caf50 on #ffffff has 2.78:1 contrast at 16px/600; needs 4.5:1 (e.g. #2e7d32)."
+    },
+    {
+      "sc": "1.4.3",
+      "status": "fail",
+      "element": ".badge.pending",
+      "description": "Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1."
+    },
+    {
+      "sc": "1.4.10",
+      "status": "warning",
+      "element": ".chart-legend",
+      "description": "Non-wrapping flex row of four legend items likely overflows horizontally at 320px width; add flex-wrap: wrap."
+    },
+    {
+      "sc": "1.4.11",
+      "status": "fail",
+      "element": ".form-group input",
+      "description": "Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1."
+    },
+    {
+      "sc": "3.3.1",
+      "status": "fail",
+      "element": "#deadline",
+      "description": "Invalid value 'not a date' is flagged only by the .error border; no text describes the error and aria-invalid is not set."
+    },
+    {
+      "sc": "3.3.2",
+      "status": "fail",
+      "element": "#project-name, #deadline",
+      "description": "No text indication of required fields, and Deadline gives no expected date format."
+    },
+    {
+      "sc": "3.3.3",
+      "status": "fail",
+      "element": "#deadline",
+      "description": "No suggestion for correcting the Deadline error (e.g. 'Enter a date as MM/DD/YYYY')."
+    }
+  ]
+}
