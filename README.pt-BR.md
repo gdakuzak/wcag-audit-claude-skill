@@ -19,7 +19,7 @@ A skill também encontrou falhas reais de contraste não textual (SC 1.4.11) na 
 
 > A avaliação foi feita com o checklist anterior, de 28 critérios. Hoje a skill cobre os 55 critérios A + AA, e a avaliação ainda não foi refeita com os novos.
 
-[Ver o relatório completo da avaliação →](https://cflw-ai.github.io/wcag-audit-claude-skill/eval-report.html)
+[Ver o relatório completo da avaliação →](https://gdakuzak.github.io/wcag-audit-claude-skill/eval-report.html)
 
 ## Instalação
 

@@ -17,7 +17,7 @@ Evaluated across 10 purpose-built test pages with 56 documented accessibility fa
 
 The skill also caught real SC 1.4.11 non-text contrast failures in the "fully compliant" test page that the test designer had missed — demonstrating its thoroughness for programmatic contrast checking where visual inspection is unreliable.
 
-[View the full evaluation report →](https://cflw-ai.github.io/wcag-audit-claude-skill/eval-report.html)
+[View the full evaluation report →](https://gdakuzak.github.io/wcag-audit-claude-skill/eval-report.html)
 
 ## Install
 
