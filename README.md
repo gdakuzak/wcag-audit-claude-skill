@@ -1,5 +1,7 @@
 # WCAG 2.2 Audit — Claude Cowork Skill
 
+**English** · [Português](./README.pt-BR.md)
+
 A Claude Cowork plugin that performs comprehensive WCAG 2.2 Level AA accessibility audits on web pages and HTML files, with programmatic contrast verification and professional audit reports.
 
 ## Results
