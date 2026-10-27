@@ -19,6 +19,19 @@ The skill also caught real SC 1.4.11 non-text contrast failures in the "fully co
 
 ## Install
 
+### Claude Code
+
+```
+/plugin marketplace add gdakuzak/wcag-audit-claude-skill
+/plugin install wcag-audit@wcag-audit
+```
+
+Or locally from a clone: `/plugin marketplace add ./wcag-audit-claude-skill`.
+
+Skill only (no plugin): `cp -r plugin/skills/wcag-audit ~/.claude/skills/`.
+
+### Claude Desktop
+
 Download [`wcag-audit.plugin`](./wcag-audit.plugin) and open it in Claude Desktop. The plugin will appear as an installable card — click Accept to install.
 
 Alternatively, copy the `plugin/` directory into your Claude skills folder.

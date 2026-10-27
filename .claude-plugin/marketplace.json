@@ -1,0 +1,13 @@
+{
+  "name": "wcag-audit",
+  "owner": {
+    "name": "Guilherme Dakuzaku"
+  },
+  "plugins": [
+    {
+      "name": "wcag-audit",
+      "source": "./plugin",
+      "description": "WCAG 2.2 AA accessibility audits with programmatic contrast verification."
+    }
+  ]
+}
