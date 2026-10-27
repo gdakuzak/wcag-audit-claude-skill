@@ -4,7 +4,7 @@ Comprehensive WCAG 2.2 Level AA accessibility auditing for web pages and HTML fi
 
 ## What it does
 
-This plugin adds a skill that performs rigorous accessibility audits against all 28 WCAG 2.2 AA success criteria. It combines manual code review with programmatic contrast verification using the WCAG relative luminance formula.
+This plugin adds a skill that performs rigorous accessibility audits against all 55 WCAG 2.2 A + AA success criteria (plus a Storybook mode for component libraries). It combines manual code review with programmatic contrast verification using the WCAG relative luminance formula.
 
 ## How to use
 
@@ -32,4 +32,4 @@ Tested across 10 purpose-built test pages with 56 documented accessibility failu
 |-----------|---------|
 | `skills/wcag-audit` | Core audit workflow and methodology |
 | `scripts/contrast_checker.py` | Programmatic WCAG contrast ratio computation |
-| `references/wcag-22-criteria.md` | Complete 28-criteria checklist |
+| `references/wcag-22-criteria.md` | Complete 55-criteria checklist |

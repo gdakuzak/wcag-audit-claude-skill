@@ -8,13 +8,13 @@ description: >
   "accessibility audit", "a11y check", "WCAG 2.2", "contrast ratio", "screen reader compatible",
   "ADA compliant", or asks whether a website or HTML file meets accessibility requirements. If the
   user asks to FIX accessibility issues after the audit, this skill also covers the remediation
-  workflow. Trigger broadly — if accessibility or WCAG is mentioned at all, this skill applies.
+  workflow. Also covers Storybook / component libraries (every story, every theme). Trigger broadly — if accessibility or WCAG is mentioned at all, this skill applies.
 ---
 
 # WCAG 2.2 AA Accessibility Audit
 
-This skill performs a rigorous, systematic accessibility audit against all 28 WCAG 2.2 Level AA
-success criteria. It combines manual code review with programmatic contrast verification to produce
+This skill performs a rigorous, systematic accessibility audit against all 55 WCAG 2.2 success
+criteria required for Level AA (31 Level A + 24 Level AA). It combines manual code review with programmatic contrast verification to produce
 a professional audit report.
 
 What makes this audit valuable is that it doesn't just eyeball things — it extracts every color
@@ -26,6 +26,8 @@ especially in alternate themes.
 
 - **URL** — Fetch the live page via `curl -s -L` and audit the source
 - **Local/uploaded HTML file** — Read from the filesystem directly
+- **Storybook / component library** — Use the Storybook mode below instead of the single-page
+  phases; auditing one story by hand misses the other states and themes
 - **Screenshot** — For visual-only checks (contrast estimation, target size, layout), note in the
   report that only visual criteria could be evaluated
 
@@ -81,8 +83,12 @@ The script should output:
 
 ### Phase 4: Manual Criteria Review
 
-Evaluate all 28 WCAG 2.2 AA success criteria against the source code. See
-`references/wcag-22-criteria.md` for the complete checklist with what to look for in each.
+Evaluate all 55 criteria in `references/wcag-22-criteria.md` against the source code — every
+one gets a status (Pass / Fail / Warning / N/A) and evidence in the report. Don't stop at the
+ones listed below; criteria that are easy to forget include 2.5.7 Dragging Movements, 3.3.7
+Redundant Entry, 3.3.8 Accessible Authentication, 4.1.3 Status Messages, 2.2.1 Timing
+Adjustable, 2.4.1 Bypass Blocks, 2.4.2 Page Titled, 2.4.4 Link Purpose, 3.2.x consistency
+and 3.3.1/3.3.2 error/label handling, and 1.3.5 Identify Input Purpose.
 
 Key things that catch people off guard and deserve extra attention:
 
@@ -115,7 +121,7 @@ Report structure:
 3. **KPI cards** — criteria checked, pass count, fail count, warning count
 4. **Color contrast table** — every pair tested, with foreground/background swatches,
    computed ratio, required ratio, and pass/fail badge
-5. **Full criteria review table** — all 28 criteria with status and evidence/notes
+5. **Full criteria review table** — all 55 criteria with status and evidence/notes
 6. **Footer** — methodology note, audit date
 
 Design notes for the report HTML:
@@ -132,11 +138,17 @@ If the user asks to fix the issues found in the audit, follow this process:
 
 ### Fix Strategy
 
-1. **Color contrast failures** — Darken (for light backgrounds) or lighten (for dark backgrounds)
-   the failing color. Use `scripts/contrast_checker.py` to find the minimum adjustment that passes.
+1. **Color contrast failures** — Use `suggest_fixes(fg, bg, ratio)` from
+   `scripts/contrast_checker.py`: it returns the closest passing color when adjusting the
+   foreground *and* when adjusting the background (each moves away from the other color).
+   Decide which side to change before picking a value:
+   - Text that is white/black (or a neutral text token) on a colored surface → change the
+     **surface** (e.g. darken the button/badge background). Never "fix" white text by turning it gray.
+   - Colored text on a neutral page background → change the **text** color.
+   - Prefer changing the design token, not the one usage, and re-check every pair that token
+     appears in. If a color serves as both foreground and background (accent circles with white
+     text, accent text on white), verify both directions.
    Choose the closest passing color to preserve the original design intent — don't over-correct.
-   If a color serves as both text foreground AND background for other text (e.g., accent-colored
-   circles with white text), verify both directions.
 
 2. **Target size failures** — Use the invisible `::before` pseudo-element technique:
    ```css
@@ -166,6 +178,47 @@ If the user asks to fix the issues found in the audit, follow this process:
 
 Re-run the full audit (Phases 2–5) on the fixed HTML and generate a new report. The fixed-version
 report should include a "Changes Applied" section documenting each fix with before/after values.
+
+## Storybook / Component Library Mode
+
+Use this when the input is a Storybook (or a design system with one). A component library has
+many states and themes, so the audit is automated per story and then reviewed by hand.
+
+1. **Build** the static Storybook (`npx storybook build -o <dir>` or the project's script) and
+   read `<dir>/index.json` to list stories. Find how themes are switched (a `globals` toolbar
+   in `.storybook/preview.*`, e.g. `theme:light` / `theme:dark`).
+2. **Run `scripts/storybook_audit.mjs`** from the project root (it needs `playwright` and
+   `axe-core` from the project's `node_modules`; install them as dev deps if missing):
+   ```bash
+   THEMES=theme:light,theme:dark STORY_FILTER='^components-' \
+     node <skill-path>/scripts/storybook_audit.mjs <dir> sb-audit.json
+   ```
+   It runs axe (WCAG 2.x A/AA + best-practice) on every story × theme and Tabs through each story,
+   pixel-diffing every focused element (or the visible container of a visually hidden input) to
+   find missing focus indicators. Set `AXE_PATH` if pnpm hides `axe-core`, `CHROME` if Playwright's
+   browser isn't installed.
+3. **Attribute every violation before counting it.** Each failing node is one of:
+   - **Component** — the node is the component's own markup (its root class / tag, or inside it).
+     This is what the component verdict is based on.
+   - **Story scaffolding** — markup the story author built around the component: galleries,
+     demo grids, headings, captions, layout wrappers, sample text, mock data. Report these in a
+     separate "Story/docs issues" section; they don't fail the component. A single icon
+     gallery can produce hundreds of contrast errors that say nothing about the icon component.
+   - **Consumer-supplied content** — the story passes bad props (an icon button without a label).
+     Flag it as a usage/docs issue and check whether the component's API makes the mistake easy
+     (e.g. no required `aria-label` prop).
+   Decide by comparing the node's selector/HTML against the component's source (`importPath` in
+   the results points to the story file; open it and the component it imports). Group by
+   component, then by rule, and de-duplicate across stories and themes.
+4. **Manual review per component** — axe covers only part of WCAG. For each component, read its
+   source and check the criteria axe can't: keyboard interaction (2.1.1, arrow keys for
+   composite widgets), focus management in overlays (2.4.3, 2.1.2), 2.5.7 dragging alternatives
+   (sliders, sortable lists, drop zones), 4.1.3 status messages (toasts, alerts, loaders),
+   1.4.13 hover/focus content (tooltips, popovers), 2.5.8 target size, 3.3.1/3.3.2 for form
+   fields, and 1.4.11 for borders/focus rings via `contrast_checker.py` on the design tokens
+   (check tokens in every theme, not only rendered stories).
+5. **Report** — one row per component with its verdict, plus the criteria table across the
+   library. Keep "Component issues" and "Story/docs issues" visibly separate, with counts for each.
 
 ## File Organization
 

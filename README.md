@@ -54,7 +54,7 @@ The audit follows a 5-phase methodology:
 1. **Source Acquisition** — Fetch the page via URL or read from the filesystem
 2. **CSS Color Extraction** — Parse every color declaration from stylesheets
 3. **Programmatic Contrast Verification** — Compute contrast ratios using the WCAG relative luminance formula via `contrast_checker.py`
-4. **Manual Criteria Review** — Evaluate all 28 success criteria through code analysis
+4. **Manual Criteria Review** — Evaluate all 55 WCAG 2.2 A + AA success criteria through code analysis
 5. **Report Generation** — Produce a professional styled HTML audit report
 
 ## Repository Structure

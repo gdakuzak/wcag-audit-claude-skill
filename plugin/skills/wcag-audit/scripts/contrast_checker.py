@@ -6,7 +6,7 @@ Implements the exact WCAG relative luminance and contrast ratio formulas.
 Use these functions to programmatically verify all color pairs on a page.
 
 Usage as a library:
-    from contrast_checker import contrast_ratio, check_pair, find_passing_color
+    from contrast_checker import contrast_ratio, check_pair, find_passing_color, suggest_fixes
 
 Usage standalone (demo):
     python3 contrast_checker.py
@@ -104,16 +104,21 @@ def rgba_on_bg(fg_hex: str, alpha: float, bg_hex: str) -> str:
     )
 
 
-def find_passing_color(base_hex: str, bg_hex: str, min_ratio: float = 4.5,
-                        direction: str = "darken", steps: int = 100) -> Optional[str]:
+def find_passing_color(base_hex: str, other_hex: str, min_ratio: float = 4.5,
+                        direction: str = "auto", steps: int = 100) -> Optional[str]:
     """
     Starting from base_hex, progressively darken or lighten until the color
-    passes min_ratio against bg_hex. Returns the first passing color, or None.
+    passes min_ratio against other_hex. Returns the first passing color, or None.
 
-    This is useful for finding the minimum adjustment to fix a failing color
-    while preserving as much of the original hue as possible.
+    direction="auto" moves base_hex away from other_hex (lightens it if it is the
+    lighter of the two, darkens it otherwise), so white text is never "fixed" by
+    darkening it toward its background. base_hex can be either side of the pair:
+    pass the background as base_hex to adjust the background instead of the text.
     """
     r, g, b = hex_to_rgb(base_hex)
+    if direction == "auto":
+        lighter = relative_luminance(r, g, b) > relative_luminance(*hex_to_rgb(other_hex))
+        direction = "lighten" if lighter else "darken"
 
     for i in range(1, steps + 1):
         factor = i / steps
@@ -132,10 +137,23 @@ def find_passing_color(base_hex: str, bg_hex: str, min_ratio: float = 4.5,
             int(round(nb * 255))
         )
 
-        if contrast_ratio(candidate, bg_hex) >= min_ratio:
+        if contrast_ratio(candidate, other_hex) >= min_ratio:
             return candidate
 
     return None
+
+
+def suggest_fixes(fg_hex: str, bg_hex: str, min_ratio: float = 4.5) -> dict:
+    """
+    Closest passing color when adjusting the foreground, and when adjusting the
+    background. Either can be None (e.g. white text can't get any lighter, so only
+    darkening the background works). Pick the side that is the design token meant
+    to change — usually the colored surface, not pure white/black text.
+    """
+    return {
+        "fg": find_passing_color(fg_hex, bg_hex, min_ratio),
+        "bg": find_passing_color(bg_hex, fg_hex, min_ratio),
+    }
 
 
 def print_results(summary: dict) -> None:
@@ -176,8 +194,22 @@ if __name__ == "__main__":
     print("--- find_passing_color demo ---")
     failing = "#999999"
     bg = "#ffffff"
-    fixed = find_passing_color(failing, bg, 4.5, "darken")
+    fixed = find_passing_color(failing, bg, 4.5)
     if fixed:
         cr = contrast_ratio(fixed, bg)
         print(f"  {failing} fails on {bg}")
         print(f"  Darkened to {fixed} → {cr:.2f}:1 ✅")
+
+    print()
+    print("--- suggest_fixes demo: white text on a mid blue button ---")
+    fixes = suggest_fixes("#ffffff", "#4a90e2", 4.5)
+    print(f"  adjust text: {fixes['fg']}  |  adjust background: {fixes['bg']}")
+
+    # self-check: white can't be lightened, so only the background fix exists,
+    # and it must be darker than the original and pass.
+    assert fixes["fg"] is None
+    assert fixes["bg"] and contrast_ratio("#ffffff", fixes["bg"]) >= 4.5
+    assert relative_luminance(*hex_to_rgb(fixes["bg"])) < relative_luminance(*hex_to_rgb("#4a90e2"))
+    # dark text on a light surface: auto darkens the text, lightens the surface
+    f2 = suggest_fixes("#767676", "#eeeeee", 4.5)
+    assert contrast_ratio(f2["fg"], "#eeeeee") >= 4.5 and contrast_ratio("#767676", f2["bg"]) >= 4.5
