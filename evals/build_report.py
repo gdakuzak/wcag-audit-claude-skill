@@ -103,6 +103,10 @@ T = {
                "(e.g. <code>.fake-h1</code>). The Storybook mode is not covered by this suite.",
         "footer": "WCAG 2.2 Audit Skill evaluation — generated {date} — {pages} pages, {known} known failures, {rate}% detection",
         "sc": "SC",
+        "cols": ["Page", "SC", "Element", "Note"],
+        "verdict_k": "{rate}% detected",
+        "verdict_p": "{hit} of {known} known failures found, {tn_ok} of {tn} should-pass items left alone, "
+                     "{fp} false positives and {gen} real issues beyond the ground truth. Audited blind, graded strictly.",
     },
     "pt": {
         "lang": "pt-BR", "title": "Skill de Auditoria WCAG 2.2 — Relatório de Avaliação", "other": "English",
@@ -151,6 +155,11 @@ T = {
                "dão pista do problema (por exemplo <code>.fake-h1</code>). O modo Storybook não é coberto por esta suíte.",
         "footer": "Avaliação da Skill de Auditoria WCAG 2.2 — gerado em {date} — {pages} páginas, {known} falhas conhecidas, {rate}% de detecção",
         "sc": "SC",
+        "cols": ["Página", "SC", "Elemento", "Nota"],
+        "verdict_k": "{rate}% detectado",
+        "verdict_p": "{hit} de {known} falhas conhecidas encontradas, {tn_ok} de {tn} itens que devem passar "
+                     "preservados, {fp} falsos positivos e {gen} problemas reais além do gabarito. Auditoria às cegas, "
+                     "correção rígida.",
     },
 }
 
@@ -173,9 +182,12 @@ def build(lang, res, review):
     tn_bad = tn - res["should_pass_correct"]
     verdicts = {p: review.get(p, []) for p in pp}
     fp_extra = sum(1 for v in verdicts.values() for r in v if r["verdict"] == "false_positive")
+    gen_total = sum(1 for v in verdicts.values() for r in v if r["verdict"] == "genuine")
     full_cov = sum(1 for r in pp.values() if r["meta"]["all_55_criteria_rated"])
+    rate = res["detection_rate"] if lang == "en" else str(res["detection_rate"]).replace(".", ",")
     fmt = dict(ver=res["skill_version"], pages=res["test_pages"], known=known, tn=tn, hit=hit,
-               tn_bad=tn_bad, fp_extra=fp_extra, date=DATE, rate=res["detection_rate"])
+               tn_bad=tn_bad, fp_extra=fp_extra, date=DATE, rate=rate, tn_ok=res["should_pass_correct"],
+               fp=tn_bad + fp_extra, gen=gen_total)
 
     rows, misses, fps, extras = [], [], [], []
     for page, r in pp.items():
@@ -189,105 +201,107 @@ def build(lang, res, review):
         gen = [x for x in verdicts[page] if x["verdict"] == "genuine"]
         fpx = [x for x in verdicts[page] if x["verdict"] == "false_positive"]
         clean = d == len(tps) and ok_tn == len(tns) and not fpx
-        badge = (f'<span class="badge badge--pass">{t["pass"]}</span>' if clean
-                 else f'<span class="badge badge--warn">{t["partial"]}</span>')
-        rows.append(f"<tr><td style='font-weight:600'>{n} — {esc(name)}</td><td>{esc(focus)}</td>"
-                    f"<td class='c'>{len(tps)}</td><td class='c'>{d}</td><td class='c'>{ok_tn}/{len(tns)}</td>"
-                    f"<td class='c'>{len(gen)}</td><td class='c'>{len(fpx) + len(tns) - ok_tn}</td><td class='c'>{badge}</td></tr>")
-        misses += [(n, a) for a in tps if not a["passed"]]
-        fps += [(n, a["sc"], esc(a["text"])) for a in tns if not a["passed"]]
+        badge = (f'<span class="badge b-pass">{t["pass"]}</span>' if clean
+                 else f'<span class="badge b-warn">{t["partial"]}</span>')
+        rows.append(f"<tr{'' if clean else ' class=r-warn'}><td><strong>{n}</strong> {esc(name)}</td>"
+                    f"<td class='note'>{esc(focus)}</td><td class='c mono'>{len(tps)}</td><td class='c mono'>{d}</td>"
+                    f"<td class='c mono'>{ok_tn}/{len(tns)}</td><td class='c mono'>{len(gen)}</td>"
+                    f"<td class='c mono'>{len(fpx) + len(tns) - ok_tn}</td><td>{badge}</td></tr>")
         note = "note_en" if lang == "en" else "note_pt"
-        fps += [(n, x["sc"], f"<code>{esc(x['element'])}</code> — {esc(x[note])}") for x in fpx]
-        extras += [(n, x["sc"], f"<code>{esc(x['element'])}</code> — {esc(x[note])}") for x in gen]
+        misses += [(n, a["sc"], "", esc(a["text"])) for a in tps if not a["passed"]]
+        fps += [(n, a["sc"], "", esc(a["text"])) for a in tns if not a["passed"]]
+        fps += [(n, x["sc"], esc(x["element"]), esc(x[note])) for x in fpx]
+        extras += [(n, x["sc"], esc(x["element"]), esc(x[note])) for x in gen]
 
-    def rowlist(items, empty):
+    def table(items, empty):
         if not items:
-            return f"<p>{empty}</p>"
-        return "<div class='detail-card'>" + "".join(
-            f"<div class='check-row'><span class='sc-tag'>{n}</span> <span class='sc-tag'>{t['sc']} {sc}</span> {txt}</div>"
-            for n, sc, txt in items) + "</div>"
+            return f"<p class='empty'>{empty}</p>"
+        head = "".join(f"<th>{c}</th>" for c in t["cols"])
+        body = "".join(f"<tr><td class='mono'>{n}</td><td class='mono'>{sc}</td>"
+                       f"<td>{f'<code>{el}</code>' if el else ''}</td><td class='note'>{txt}</td></tr>"
+                       for n, sc, el, txt in items)
+        return f"<div class='scroll'><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>"
 
-    tested = sorted({a["sc"] for r in pp.values() for a in r["assertions"] if a["type"] == "tp" and a["passed"] is not None},
-                    key=ALL_SC.index)
+    tested = sorted({a["sc"] for r in pp.values() for a in r["assertions"] if a["type"] == "tp"}, key=ALL_SC.index)
     untested = [s for s in ALL_SC if s not in tested]
-
+    ok = hit == known and not (tn_bad + fp_extra)
     css = open(os.path.join(EVAL_DIR, "report.css")).read()
+    th = "".join(f"<th{' class=c' if 1 < i < 7 else ''}>{h}</th>" for i, h in enumerate(t["th"]))
     return f"""<!DOCTYPE html>
 <html lang="{t['lang']}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(t['title'])}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 {css}
-  td.c, th.c {{ text-align: center; }}
-  .lang-switch {{ float: right; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }}
-  .method li {{ margin: 0 0 10px 20px; max-width: 720px; }}
-  code {{ font-family: var(--font-mono); font-size: 0.85em; }}
 </style>
 </head>
 <body>
-<main class="page">
-  <header class="header">
-    <a class="lang-switch" href="{t['other_href']}" hreflang="{'pt-BR' if lang == 'en' else 'en'}">{t['other']}</a>
-    <div class="label">{t['label']}</div>
-    <h1>WCAG 2.2 Audit Skill</h1>
-    <div class="subtitle">{t['subtitle'].format(**fmt)}</div>
-    <div class="meta">
-      <span>{t['date']}: {DATE}</span><span>{t['version']}: {res['skill_version']}</span>
-      <span>{t['pages']}: {res['test_pages']}</span><span>{t['known']}: {known}</span>
+<main class="wrap">
+  <header>
+    <div class="top">
+      <div class="eyebrow">{t['label']} · WCAG 2.2 A + AA · {DATE}</div>
+      <a href="{t['other_href']}" hreflang="{'pt-BR' if lang == 'en' else 'en'}">{t['other']}</a>
     </div>
+    <h1>WCAG 2.2 Audit Skill v{res['skill_version']}</h1>
+    <p class="sub">{t['subtitle'].format(**fmt)}</p>
   </header>
 
-  <div class="kpi-grid">
-    <div class="kpi kpi--{'green' if hit == known else 'gold'}"><div class="kpi-label">{t['k_detect']}</div>
-      <div class="kpi-value">{res['detection_rate']}%</div><div class="kpi-detail">{t['k_detect_d'].format(**fmt)}</div></div>
-    <div class="kpi kpi--{'green' if hit == known else 'gold'}"><div class="kpi-label">{t['k_missed']}</div>
-      <div class="kpi-value">{known - hit}</div><div class="kpi-detail">{t['k_missed_d']}</div></div>
-    <div class="kpi kpi--{'green' if not (tn_bad + fp_extra) else 'gold'}"><div class="kpi-label">{t['k_fp']}</div>
-      <div class="kpi-value">{tn_bad + fp_extra}</div><div class="kpi-detail">{t['k_fp_d'].format(**fmt)}</div></div>
-    <div class="kpi kpi--accent"><div class="kpi-label">{t['k_cov']}</div>
-      <div class="kpi-value">{full_cov}/{res['test_pages']}</div><div class="kpi-detail">{t['k_cov_d']}</div></div>
+  <div class="verdict{' ok' if ok else ''}" style="{'' if ok else 'border-color:var(--warn);background:var(--warn-bg)'}">
+    <strong style="{'' if ok else 'color:var(--warn)'}">{t['verdict_k'].format(**fmt).upper()}</strong>
+    <p>{t['verdict_p'].format(**fmt)}</p>
   </div>
 
-  <div class="section-label">{t['m_label']}</div>
-  <h2>{t['m_h']}</h2>
-  <ul class="method">{''.join(f'<li>{i}</li>' for i in t['m_items'])}</ul>
+  <div class="kpis">
+    <div class="kpi p"><b>{hit}/{known}</b><span>{t['k_detect']}</span></div>
+    <div class="kpi {'p' if hit == known else 'f'}"><b>{known - hit}</b><span>{t['k_missed']}</span></div>
+    <div class="kpi {'p' if not fmt['fp'] else 'w'}"><b>{fmt['fp']}</b><span>{t['k_fp']}</span></div>
+    <div class="kpi p"><b>{fmt['tn_ok']}/{tn}</b><span>{t['th'][4]}</span></div>
+    <div class="kpi a"><b>{gen_total}</b><span>{t['ex_label']}</span></div>
+    <div class="kpi a"><b>{full_cov}/{res['test_pages']}</b><span>{t['k_cov_d']}</span></div>
+  </div>
 
-  <div class="section-label">{t['t_label']}</div>
-  <h2>{t['t_h']}</h2>
-  <div class="table-wrap"><table>
-    <thead><tr>{''.join(f'<th class="c">{h}</th>' if i > 1 else f'<th>{h}</th>' for i, h in enumerate(t['th']))}</tr></thead>
-    <tbody>{''.join(rows)}</tbody>
-  </table></div>
+  <section>
+    <h2>{t['m_h']}</h2>
+    <ol class="prio">{''.join(f'<li><p>{i}</p></li>' for i in t['m_items'])}</ol>
+  </section>
 
-  <div class="section-label">{t['miss_label']}</div>
-  <h2>{t['miss_h']}</h2>
-  {rowlist([(n, a['sc'], esc(a['text'])) for n, a in misses], t['miss_none'])}
+  <section>
+    <h2>{t['t_h']}</h2>
+    <div class="scroll"><table><thead><tr>{th}</tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+  </section>
 
-  <div class="section-label">{t['fp_label']}</div>
-  <h2>{t['fp_h']}</h2>
-  {rowlist(fps, t['fp_none'])}
+  <section>
+    <h2>{t['miss_h']}</h2>
+    {table(misses, t['miss_none'])}
+  </section>
 
-  <div class="section-label">{t['ex_label']}</div>
-  <h2>{t['ex_h']}</h2>
-  {rowlist(extras, t['ex_none'])}
+  <section>
+    <h2>{t['fp_h']}</h2>
+    {table(fps, t['fp_none'])}
+  </section>
 
-  <div class="section-label">{t['cov_label']}</div>
-  <h2>{t['cov_h']}</h2>
-  <p>{t['cov_p'].format(n=len(tested))}</p>
-  <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px">{''.join(f'<span class="sc-tag">{s}</span>' for s in tested)}</div>
-  <p style="font-size:0.88rem;color:var(--text-dim)">{t['cov_missing']} {', '.join(untested)}</p>
+  <section>
+    <h2>{t['ex_h']} <span class="badge b-na">{gen_total}</span></h2>
+    <details><summary>{t['ex_label']}</summary>{table(extras, t['ex_none'])}</details>
+  </section>
 
-  <div class="section-label">{t['v1_label']}</div>
-  <h2>{t['v1_h']}</h2>
-  <p>{t['v1_p']}</p>
+  <section>
+    <h2>{t['cov_h']}</h2>
+    <p class="sub">{t['cov_p'].format(n=len(tested))}</p>
+    <div class="tags">{''.join(f'<code>{s}</code>' for s in tested)}</div>
+    <p class="sub">{t['cov_missing']} {', '.join(untested)}</p>
+  </section>
 
-  <div class="disclaimer">{t['lim']}</div>
-  <footer class="footer"><p>{t['footer'].format(**fmt)}</p></footer>
+  <section>
+    <h2>{t['v1_h']}</h2>
+    <p class="sub">{t['v1_p']}</p>
+  </section>
+
+  <footer><p>{t['lim']}</p><p>{t['footer'].format(**fmt)}</p></footer>
 </main>
 </body>
 </html>

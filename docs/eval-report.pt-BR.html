@@ -4,289 +4,142 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skill de Auditoria WCAG 2.2 — Relatório de Avaliação</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  :root {
-    --font-body: 'Instrument Serif', Georgia, serif;
-    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-    --font-sans: system-ui, -apple-system, sans-serif;
-    --bg: #faf8f5;
-    --surface: #ffffff;
-    --surface2: #f5f2ed;
-    --surface-elevated: #ffffff;
-    --border: rgba(0,0,0,0.07);
-    --border-bright: rgba(0,0,0,0.14);
-    --text: #1c1917;
-    --text-dim: #78716c;
-    --accent: #1e3a5f;
-    --accent-dim: rgba(30,58,95,0.06);
-    --gold: #d4a73a;
-    --gold-dim: rgba(212,167,58,0.08);
-    --green: #16a34a;
-    --green-dim: rgba(22,163,74,0.08);
-    --red: #dc2626;
-    --red-dim: rgba(220,38,38,0.08);
-    --orange: #d97706;
-    --orange-dim: rgba(217,119,6,0.08);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f0e0c;
-      --surface: #1a1815;
-      --surface2: #24211d;
-      --surface-elevated: #2a2721;
-      --border: rgba(255,255,255,0.06);
-      --border-bright: rgba(255,255,255,0.12);
-      --text: #ede8e0;
-      --text-dim: #a8a090;
-      --accent: #7ba7d4;
-      --accent-dim: rgba(123,167,212,0.12);
-      --gold: #e8c05a;
-      --gold-dim: rgba(232,192,90,0.12);
-      --green: #4ade80;
-      --green-dim: rgba(74,222,128,0.1);
-      --red: #f87171;
-      --red-dim: rgba(248,113,113,0.1);
-      --orange: #fbbf24;
-      --orange-dim: rgba(251,191,36,0.1);
-    }
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    background: var(--bg);
-    background-image: radial-gradient(ellipse at 30% 0%, var(--accent-dim) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 100%, var(--gold-dim) 0%, transparent 40%);
-    color: var(--text); font-family: var(--font-body); line-height: 1.65;
-    min-height: 100vh;
-  }
-  .page { max-width: 960px; margin: 0 auto; padding: 60px 24px 80px; }
 
-  /* ---- Header ---- */
-  .header { margin-bottom: 48px; }
-  .header .label {
-    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
-    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-  }
-  .header .label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--gold); display: inline-block;
-  }
-  .header h1 { font-size: 2.6rem; line-height: 1.15; margin-bottom: 12px; font-weight: 400; }
-  .header .subtitle { font-size: 1.15rem; color: var(--text-dim); max-width: 600px; }
-  .header .meta {
-    margin-top: 16px; font-family: var(--font-mono); font-size: 0.75rem;
-    color: var(--text-dim); display: flex; gap: 24px; flex-wrap: wrap;
-  }
+:root {
+  --bg:#f7f9fb; --surface:#ffffff; --fg:#1c2733; --muted:#5a6673; --line:#dfe5ea; --accent:#16598e;
+  --pass:#21672a; --pass-bg:#e3f4e4; --fail:#a62a2a; --fail-bg:#fbe7e7; --warn:#8a4a00; --warn-bg:#fff1d6; --na:#5a6673; --na-bg:#eceff2;
+  --f-body:'Work Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#0f151b; --surface:#161e26; --fg:#e4eaf0; --muted:#9aa7b4; --line:#2a3642; --accent:#8cc6ed;
+  --pass:#9bda9e; --pass-bg:#173a1b; --fail:#f4adad; --fail-bg:#451818; --warn:#ffd27a; --warn-bg:#3d2a07; --na:#a7b2bd; --na-bg:#232d37; color-scheme:dark } }
+:root[data-theme="dark"] {
+  --bg:#0f151b; --surface:#161e26; --fg:#e4eaf0; --muted:#9aa7b4; --line:#2a3642; --accent:#8cc6ed;
+  --pass:#9bda9e; --pass-bg:#173a1b; --fail:#f4adad; --fail-bg:#451818; --warn:#ffd27a; --warn-bg:#3d2a07; --na:#a7b2bd; --na-bg:#232d37; color-scheme:dark }
+* { box-sizing:border-box }
+body { background:var(--bg); color:var(--fg); font:15px/1.55 var(--f-body); }
+.wrap { max-width:1120px; margin:0 auto; padding-block:40px 64px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); display:grid; gap:40px }
+header .eyebrow { font:500 12px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--muted) }
+h1 { font-size:clamp(26px,4vw,36px); line-height:1.15; margin:6px 0 8px; text-wrap:balance }
+h2 { font-size:20px; margin:0 0 4px; text-wrap:balance }
+.sub { color:var(--muted); margin:0; max-width:70ch }
+code,kbd { font:13px var(--f-mono); background:var(--na-bg); padding:1px 4px; border-radius:3px; overflow-wrap:anywhere }
+.verdict { border:1px solid var(--fail); background:var(--fail-bg); color:var(--fg); border-radius:8px; padding:18px 20px; display:flex; gap:16px; align-items:center; flex-wrap:wrap }
+.verdict strong { font-size:22px; color:var(--fail); letter-spacing:.02em }
+.verdict p { margin:0; flex:1 1 320px; min-width:0 }
+.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px }
+.kpi { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 16px }
+.kpi b { display:block; font:600 28px var(--f-mono); font-variant-numeric:tabular-nums }
+.kpi span { color:var(--muted); font-size:13px }
+.kpi.f b { color:var(--fail) } .kpi.p b { color:var(--pass) } .kpi.w b { color:var(--warn) }
+section { display:grid; gap:12px; min-width:0 }
+.scroll { overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:8px }
+table { border-collapse:collapse; width:100%; font-size:14px }
+th,td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top }
+th { font:500 12px var(--f-mono); text-transform:uppercase; letter-spacing:.06em; color:var(--muted); background:var(--surface); position:sticky; top:0 }
+tr:last-child td { border-bottom:0 }
+.mono { font-family:var(--f-mono); font-size:13px; white-space:nowrap }
+.num { text-align:right; font-variant-numeric:tabular-nums }
+.lvl { font:500 11px var(--f-mono); color:var(--muted); border:1px solid var(--line); border-radius:3px; padding:0 4px; margin-left:4px }
+.tok { font:12px var(--f-mono); color:var(--muted) }
+.comps { color:var(--muted); font-size:13px; min-width:260px }
+.sw { display:inline-block; width:14px; height:14px; border-radius:3px; border:1px solid var(--line); vertical-align:-2px; margin-right:6px }
+td:has(.sw) { white-space:nowrap }
+.badge { display:inline-block; font:600 12px var(--f-body); padding:2px 8px; border-radius:999px; white-space:nowrap }
+.b-fail { color:var(--fail); background:var(--fail-bg) } .b-pass { color:var(--pass); background:var(--pass-bg) }
+.b-warn { color:var(--warn); background:var(--warn-bg) } .b-na { color:var(--na); background:var(--na-bg) }
+tr.r-fail td:first-child { box-shadow:inset 3px 0 0 var(--fail) } tr.r-warn td:first-child { box-shadow:inset 3px 0 0 var(--warn) }
+.imp { font:500 12px var(--f-mono) } .imp-critical,.imp-serious { color:var(--fail) } .imp-minor,.imp-moderate { color:var(--warn) }
+ol.prio { margin:0; padding:0; list-style:none; display:grid; gap:10px; counter-reset:p }
+ol.prio li { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 16px 14px 52px; position:relative; counter-increment:p }
+ol.prio li::before { content:counter(p); position:absolute; left:16px; top:13px; font:600 18px var(--f-mono); color:var(--accent) }
+.p-head { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap }
+.p-sc { font:12px var(--f-mono); color:var(--muted) }
+ol.prio p { margin:4px 0 0; max-width:90ch }
+details summary { cursor:pointer; font-weight:600 }
+details summary:focus-visible, a:focus-visible { outline:2px solid var(--accent); outline-offset:2px }
+footer { color:var(--muted); font-size:13px; border-top:1px solid var(--line); padding-top:16px; max-width:90ch }
+footer p { margin:0 0 8px }
+@media (prefers-reduced-motion: no-preference) { .kpi { animation:rise .4s ease-out both } @keyframes rise { from { transform:translateY(4px) } to { transform:none } } }
 
-  /* ---- KPI Cards ---- */
-  .kpi-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px; margin-bottom: 48px;
-  }
-  .kpi {
-    background: var(--surface-elevated); border: 1px solid var(--border);
-    border-radius: 12px; padding: 24px; position: relative; overflow: hidden;
-    animation: fadeUp 0.5s ease both;
-  }
-  .kpi:nth-child(1) { animation-delay: 0.1s; }
-  .kpi:nth-child(2) { animation-delay: 0.2s; }
-  .kpi:nth-child(3) { animation-delay: 0.3s; }
-  .kpi:nth-child(4) { animation-delay: 0.4s; }
-  .kpi .kpi-label {
-    font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim);
-    margin-bottom: 8px;
-  }
-  .kpi .kpi-value { font-size: 2.4rem; font-weight: 400; line-height: 1.1; }
-  .kpi .kpi-detail { font-size: 0.85rem; color: var(--text-dim); margin-top: 6px; }
-  .kpi--green .kpi-value { color: var(--green); }
-  .kpi--green { border-left: 3px solid var(--green); }
-  .kpi--gold .kpi-value { color: var(--gold); }
-  .kpi--gold { border-left: 3px solid var(--gold); }
-  .kpi--accent .kpi-value { color: var(--accent); }
-  .kpi--accent { border-left: 3px solid var(--accent); }
+.verdict.ok { border-color:var(--pass); background:var(--pass-bg) } .verdict.ok strong { color:var(--pass) }
+.kpi.a b { color:var(--accent) }
+header .top { display:flex; justify-content:space-between; gap:12px; align-items:baseline }
+header .top a { color:var(--accent); font:500 13px var(--f-mono) }
+.c { text-align:center }
+td.note { color:var(--muted); font-size:14px; min-width:280px }
+.tags { display:flex; flex-wrap:wrap; gap:6px }
+.tags code { font-size:12px }
+.empty { color:var(--muted); margin:0 }
 
-  /* ---- Section Headings ---- */
-  .section-label {
-    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
-    margin: 48px 0 8px; display: flex; align-items: center; gap: 8px;
-  }
-  .section-label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--gold);
-  }
-  h2 { font-size: 1.6rem; font-weight: 400; margin-bottom: 16px; }
-  h3 { font-size: 1.15rem; font-weight: 400; margin: 24px 0 8px; }
-
-  /* ---- Prose ---- */
-  p { margin-bottom: 14px; max-width: 680px; }
-  .lead { font-size: 1.15rem; color: var(--text-dim); max-width: 640px; margin-bottom: 20px; }
-
-  /* ---- Table ---- */
-  .table-wrap {
-    overflow-x: auto; margin: 20px 0 32px; border-radius: 12px;
-    border: 1px solid var(--border); background: var(--surface);
-    animation: fadeUp 0.5s ease 0.3s both;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
-  thead { position: sticky; top: 0; z-index: 2; }
-  th {
-    background: var(--surface2); font-family: var(--font-mono); font-size: 0.72rem;
-    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-dim); padding: 14px 16px; text-align: left;
-    border-bottom: 1px solid var(--border-bright); white-space: nowrap;
-  }
-  td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  tbody tr { animation: fadeUp 0.3s ease both; }
-  tbody tr:nth-child(even) { background: var(--surface2); }
-  tbody tr:hover { background: var(--gold-dim); }
-
-  /* ---- Badges ---- */
-  .badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
-    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
-  }
-  .badge::before { content:''; width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-  .badge--pass { background: var(--green-dim); color: var(--green); }
-  .badge--pass::before { background: var(--green); }
-  .badge--fail { background: var(--red-dim); color: var(--red); }
-  .badge--fail::before { background: var(--red); }
-  .badge--warn { background: var(--orange-dim); color: var(--orange); }
-  .badge--warn::before { background: var(--orange); }
-  .badge--info { background: var(--accent-dim); color: var(--accent); }
-  .badge--info::before { background: var(--accent); }
-
-  /* ---- Detail cards ---- */
-  .detail-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 20px 0 32px; }
-  .detail-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 24px; animation: fadeUp 0.4s ease both;
-  }
-  .detail-card h4 {
-    font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
-    margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
-  }
-  .detail-card .sc-list {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
-  }
-  .sc-tag {
-    font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
-    padding: 2px 8px; border-radius: 6px; background: var(--accent-dim); color: var(--accent);
-  }
-  .check-row { display: flex; align-items: flex-start; gap: 8px; margin: 4px 0; font-size: 0.88rem; }
-  .check-icon { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: flex;
-    align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 2px; }
-  .check-icon--pass { background: var(--green-dim); color: var(--green); }
-  .check-icon--fail { background: var(--red-dim); color: var(--red); }
-
-  /* ---- Confidence ---- */
-  .confidence-card {
-    background: var(--surface-elevated); border: 2px solid var(--gold);
-    border-radius: 12px; padding: 28px 32px; margin: 32px 0;
-    animation: fadeUp 0.5s ease 0.5s both;
-  }
-  .confidence-card h3 { margin-top: 0; }
-
-  /* ---- Disclaimer ---- */
-  .disclaimer {
-    background: var(--orange-dim); border-left: 3px solid var(--orange);
-    border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
-    font-size: 0.88rem;
-  }
-
-  /* ---- Footer ---- */
-  .footer {
-    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
-    font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);
-  }
-
-  /* ---- Animations ---- */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; }
-  }
-
-  /* ---- Responsive ---- */
-  @media (max-width: 600px) {
-    .header h1 { font-size: 1.8rem; }
-    .kpi .kpi-value { font-size: 1.8rem; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  td.c, th.c { text-align: center; }
-  .lang-switch { float: right; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
-  .method li { margin: 0 0 10px 20px; max-width: 720px; }
-  code { font-family: var(--font-mono); font-size: 0.85em; }
 </style>
 </head>
 <body>
-<main class="page">
-  <header class="header">
-    <a class="lang-switch" href="eval-report.html" hreflang="en">English</a>
-    <div class="label">Relatório de avaliação</div>
-    <h1>WCAG 2.2 Audit Skill</h1>
-    <div class="subtitle">Avaliação às cegas da skill v1.1.0 em 12 páginas de teste, com 67 falhas documentadas e 22 itens que devem passar, com correção rígida contra o gabarito.</div>
-    <div class="meta">
-      <span>Data: 2026-10-27</span><span>Versão da skill: 1.1.0</span>
-      <span>Páginas de teste: 12</span><span>Falhas conhecidas: 67</span>
+<main class="wrap">
+  <header>
+    <div class="top">
+      <div class="eyebrow">Relatório de avaliação · WCAG 2.2 A + AA · 2026-10-27</div>
+      <a href="eval-report.html" hreflang="en">English</a>
     </div>
+    <h1>WCAG 2.2 Audit Skill v1.1.0</h1>
+    <p class="sub">Avaliação às cegas da skill v1.1.0 em 12 páginas de teste, com 67 falhas documentadas e 22 itens que devem passar, com correção rígida contra o gabarito.</p>
   </header>
 
-  <div class="kpi-grid">
-    <div class="kpi kpi--gold"><div class="kpi-label">Taxa de detecção</div>
-      <div class="kpi-value">98.5%</div><div class="kpi-detail">66 de 67 falhas conhecidas reportadas como falha</div></div>
-    <div class="kpi kpi--gold"><div class="kpi-label">Não detectadas</div>
-      <div class="kpi-value">1</div><div class="kpi-detail">Falhas conhecidas que não foram reportadas</div></div>
-    <div class="kpi kpi--gold"><div class="kpi-label">Falsos positivos</div>
-      <div class="kpi-value">2</div><div class="kpi-detail">0 itens que deviam passar + 2 outros</div></div>
-    <div class="kpi kpi--accent"><div class="kpi-label">Critérios avaliados</div>
-      <div class="kpi-value">12/12</div><div class="kpi-detail">Páginas em que os 55 critérios receberam status</div></div>
+  <div class="verdict" style="border-color:var(--warn);background:var(--warn-bg)">
+    <strong style="color:var(--warn)">98,5% DETECTADO</strong>
+    <p>66 de 67 falhas conhecidas encontradas, 22 de 22 itens que devem passar preservados, 2 falsos positivos e 41 problemas reais além do gabarito. Auditoria às cegas, correção rígida.</p>
   </div>
 
-  <div class="section-label">Metodologia</div>
-  <h2>Como a avaliação foi feita</h2>
-  <ul class="method"><li><strong>Às cegas.</strong> Cada página foi auditada a partir de uma cópia sem nenhum comentário de HTML, CSS ou JS, com <code>&lt;title&gt;</code> e nome de arquivo neutros (<code>page-NN.html</code>). A avaliação anterior trazia as respostas dentro das páginas (<code>&lt;!-- FAIL: … --&gt;</code>).</li><li><strong>Auditores independentes.</strong> Três agentes novos, com quatro páginas cada, só podiam ler a pasta da skill e as próprias páginas, nunca o gabarito nem o avaliador.</li><li><strong>Correção rígida.</strong> Uma falha conhecida só conta se a auditoria registrou um achado <em>fail</em> num critério aceito e citando o elemento. O avaliador antigo procurava palavras-chave em qualquer parte do relatório.</li><li><strong>Revisão manual.</strong> Todo achado de falha que não corresponde a uma falha conhecida foi lido e classificado como problema real que o gabarito não tinha, ou como falso positivo.</li></ul>
+  <div class="kpis">
+    <div class="kpi p"><b>66/67</b><span>Taxa de detecção</span></div>
+    <div class="kpi f"><b>1</b><span>Não detectadas</span></div>
+    <div class="kpi w"><b>2</b><span>Falsos positivos</span></div>
+    <div class="kpi p"><b>22/22</b><span>Passa OK</span></div>
+    <div class="kpi a"><b>41</b><span>Além do gabarito</span></div>
+    <div class="kpi a"><b>12/12</b><span>Páginas em que os 55 critérios receberam status</span></div>
+  </div>
 
-  <div class="section-label">Resultados por página</div>
-  <h2>Detalhamento por página de teste</h2>
-  <div class="table-wrap"><table>
-    <thead><tr><th>Página</th><th>Foco</th><th class="c">Conhecidas</th><th class="c">Detectadas</th><th class="c">Passa OK</th><th class="c">Extras reais</th><th class="c">Falsos pos.</th><th class="c">Resultado</th></tr></thead>
-    <tbody><tr><td style='font-weight:600'>01 — Contraste sutil</td><td>Razões no limite, sobreposições rgba, contraste não textual</td><td class='c'>3</td><td class='c'>3</td><td class='c'>4/4</td><td class='c'>0</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>02 — Estrutura semântica</td><td>Títulos falsos, navegação em div, tabelas, lang, texto de link</td><td class='c'>8</td><td class='c'>8</td><td class='c'>1/1</td><td class='c'>5</td><td class='c'>1</td><td class='c'><span class="badge badge--warn">Parcial</span></td></tr><tr><td style='font-weight:600'>03 — Teclado e foco</td><td>Armadilhas de teclado, foco visível, tabindex, cabeçalho fixo</td><td class='c'>7</td><td class='c'>7</td><td class='c'>1/1</td><td class='c'>11</td><td class='c'>1</td><td class='c'><span class="badge badge--warn">Parcial</span></td></tr><tr><td style='font-weight:600'>04 — Alvos e foco da WCAG 2.2</td><td>Tamanho de alvo (2.5.8), foco não encoberto (2.4.11)</td><td class='c'>4</td><td class='c'>4</td><td class='c'>2/2</td><td class='c'>5</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>05 — Formulários</td><td>Labels, grupos de radio, associação de erros, select customizado</td><td class='c'>7</td><td class='c'>7</td><td class='c'>0/0</td><td class='c'>4</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>06 — Mídia</td><td>Texto alternativo, imagem de texto, legendas, transcrições</td><td class='c'>7</td><td class='c'>7</td><td class='c'>1/1</td><td class='c'>3</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>07 — Totalmente conforme</td><td>Teste de falso positivo: tema escuro, foco customizado, alvos grandes</td><td class='c'>0</td><td class='c'>0</td><td class='c'>5/5</td><td class='c'>3</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>08 — Conteúdo dinâmico</td><td>Widgets, estados ARIA, mensagens de status, reordenação</td><td class='c'>7</td><td class='c'>7</td><td class='c'>0/0</td><td class='c'>4</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>09 — Informação só por cor</td><td>Links, campos obrigatórios, status, gráficos, erros</td><td class='c'>4</td><td class='c'>3</td><td class='c'>3/3</td><td class='c'>3</td><td class='c'>0</td><td class='c'><span class="badge badge--warn">Parcial</span></td></tr><tr><td style='font-weight:600'>10 — Responsividade e reflow</td><td>Reflow, redimensionar texto, espaçamento, layouts fixos</td><td class='c'>4</td><td class='c'>4</td><td class='c'>3/3</td><td class='c'>0</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>11 — Novos na WCAG 2.2</td><td>Arrastar (2.5.7), entrada redundante (3.3.7), autenticação (3.3.8)</td><td class='c'>7</td><td class='c'>7</td><td class='c'>1/1</td><td class='c'>2</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr><tr><td style='font-weight:600'>12 — Operável e compreensível</td><td>Tempo, pular blocos, título, atalhos, on input, autocomplete, erros</td><td class='c'>9</td><td class='c'>9</td><td class='c'>1/1</td><td class='c'>1</td><td class='c'>0</td><td class='c'><span class="badge badge--pass">Passou</span></td></tr></tbody>
-  </table></div>
+  <section>
+    <h2>Como a avaliação foi feita</h2>
+    <ol class="prio"><li><p><strong>Às cegas.</strong> Cada página foi auditada a partir de uma cópia sem nenhum comentário de HTML, CSS ou JS, com <code>&lt;title&gt;</code> e nome de arquivo neutros (<code>page-NN.html</code>). A avaliação anterior trazia as respostas dentro das páginas (<code>&lt;!-- FAIL: … --&gt;</code>).</p></li><li><p><strong>Auditores independentes.</strong> Três agentes novos, com quatro páginas cada, só podiam ler a pasta da skill e as próprias páginas, nunca o gabarito nem o avaliador.</p></li><li><p><strong>Correção rígida.</strong> Uma falha conhecida só conta se a auditoria registrou um achado <em>fail</em> num critério aceito e citando o elemento. O avaliador antigo procurava palavras-chave em qualquer parte do relatório.</p></li><li><p><strong>Revisão manual.</strong> Todo achado de falha que não corresponde a uma falha conhecida foi lido e classificado como problema real que o gabarito não tinha, ou como falso positivo.</p></li></ol>
+  </section>
 
-  <div class="section-label">Não detectadas</div>
-  <h2>Falhas conhecidas que a auditoria não reportou</h2>
-  <div class='detail-card'><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 1.4.1</span> Links only distinguished by color</div></div>
+  <section>
+    <h2>Detalhamento por página de teste</h2>
+    <div class="scroll"><table><thead><tr><th>Página</th><th>Foco</th><th class=c>Conhecidas</th><th class=c>Detectadas</th><th class=c>Passa OK</th><th class=c>Extras reais</th><th class=c>Falsos pos.</th><th>Resultado</th></tr></thead><tbody><tr><td><strong>01</strong> Contraste sutil</td><td class='note'>Razões no limite, sobreposições rgba, contraste não textual</td><td class='c mono'>3</td><td class='c mono'>3</td><td class='c mono'>4/4</td><td class='c mono'>0</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr class=r-warn><td><strong>02</strong> Estrutura semântica</td><td class='note'>Títulos falsos, navegação em div, tabelas, lang, texto de link</td><td class='c mono'>8</td><td class='c mono'>8</td><td class='c mono'>1/1</td><td class='c mono'>5</td><td class='c mono'>1</td><td><span class="badge b-warn">Parcial</span></td></tr><tr class=r-warn><td><strong>03</strong> Teclado e foco</td><td class='note'>Armadilhas de teclado, foco visível, tabindex, cabeçalho fixo</td><td class='c mono'>7</td><td class='c mono'>7</td><td class='c mono'>1/1</td><td class='c mono'>11</td><td class='c mono'>1</td><td><span class="badge b-warn">Parcial</span></td></tr><tr><td><strong>04</strong> Alvos e foco da WCAG 2.2</td><td class='note'>Tamanho de alvo (2.5.8), foco não encoberto (2.4.11)</td><td class='c mono'>4</td><td class='c mono'>4</td><td class='c mono'>2/2</td><td class='c mono'>5</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr><td><strong>05</strong> Formulários</td><td class='note'>Labels, grupos de radio, associação de erros, select customizado</td><td class='c mono'>7</td><td class='c mono'>7</td><td class='c mono'>0/0</td><td class='c mono'>4</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr><td><strong>06</strong> Mídia</td><td class='note'>Texto alternativo, imagem de texto, legendas, transcrições</td><td class='c mono'>7</td><td class='c mono'>7</td><td class='c mono'>1/1</td><td class='c mono'>3</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr><td><strong>07</strong> Totalmente conforme</td><td class='note'>Teste de falso positivo: tema escuro, foco customizado, alvos grandes</td><td class='c mono'>0</td><td class='c mono'>0</td><td class='c mono'>5/5</td><td class='c mono'>3</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr><td><strong>08</strong> Conteúdo dinâmico</td><td class='note'>Widgets, estados ARIA, mensagens de status, reordenação</td><td class='c mono'>7</td><td class='c mono'>7</td><td class='c mono'>0/0</td><td class='c mono'>4</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr class=r-warn><td><strong>09</strong> Informação só por cor</td><td class='note'>Links, campos obrigatórios, status, gráficos, erros</td><td class='c mono'>4</td><td class='c mono'>3</td><td class='c mono'>3/3</td><td class='c mono'>3</td><td class='c mono'>0</td><td><span class="badge b-warn">Parcial</span></td></tr><tr><td><strong>10</strong> Responsividade e reflow</td><td class='note'>Reflow, redimensionar texto, espaçamento, layouts fixos</td><td class='c mono'>4</td><td class='c mono'>4</td><td class='c mono'>3/3</td><td class='c mono'>0</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr><td><strong>11</strong> Novos na WCAG 2.2</td><td class='note'>Arrastar (2.5.7), entrada redundante (3.3.7), autenticação (3.3.8)</td><td class='c mono'>7</td><td class='c mono'>7</td><td class='c mono'>1/1</td><td class='c mono'>2</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr><tr><td><strong>12</strong> Operável e compreensível</td><td class='note'>Tempo, pular blocos, título, atalhos, on input, autocomplete, erros</td><td class='c mono'>9</td><td class='c mono'>9</td><td class='c mono'>1/1</td><td class='c mono'>1</td><td class='c mono'>0</td><td><span class="badge b-pass">Passou</span></td></tr></tbody></table></div>
+  </section>
 
-  <div class="section-label">Falsos positivos</div>
-  <h2>Falhas reportadas que não são reais</h2>
-  <div class='detail-card'><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.3.1</span> <code>body &gt; .container</code> — Landmarks são boa prática; a falta de &lt;main&gt; sozinha não reprova a 1.3.1.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.3.1</span> <code>.sticky-header, .content</code> — Landmarks são boa prática; a falta de &lt;header&gt;/&lt;main&gt; sozinha não reprova a 1.3.1.</div></div>
+  <section>
+    <h2>Falhas conhecidas que a auditoria não reportou</h2>
+    <div class='scroll'><table><thead><tr><th>Página</th><th>SC</th><th>Elemento</th><th>Nota</th></tr></thead><tbody><tr><td class='mono'>09</td><td class='mono'>1.4.1</td><td></td><td class='note'>Links only distinguished by color</td></tr></tbody></table></div>
+  </section>
 
-  <div class="section-label">Além do gabarito</div>
-  <h2>Problemas reais que as páginas de teste não documentavam</h2>
-  <div class='detail-card'><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.3.5</span> <code>input[type=text], input[type=email]</code> — Inputs collecting the user&#x27;s name and email lack autocomplete=&quot;name&quot; and autocomplete=&quot;email&quot;.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.4.3</span> <code>footer</code> — Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input, .form-group textarea</code> — Field border #cccccc on #fefefe = 1.59:1, below 3:1.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 1.4.11</span> <code>.toggle</code> — Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1.</div><div class='check-row'><span class='sc-tag'>02</span> <span class='sc-tag'>SC 2.1.1</span> <code>.toggle</code> — Toggle is a &lt;div onclick&gt; with no tabindex and no keydown handler; cannot be operated by keyboard.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.3.1</span> <code>.modal input</code> — Modal &#x27;Display name&#x27; and &#x27;Email&#x27; inputs have no associated &lt;label&gt;; the placeholder is the only labelling, so the field/label relationship is not programmatic.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.3.5</span> <code>.modal input[type=email], .modal input[type=text]</code> — User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=&quot;nickname&quot;/&quot;name&quot; and &quot;email&quot;).</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.4.3</span> <code>footer</code> — Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1).</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.4.11</span> <code>.search-input</code> — Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 1.4.11</span> <code>.modal input</code> — Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1).</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 2.4.3</span> <code>#modal-trap</code> — Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the &#x27;Open Settings&#x27; trigger; focus stays behind the overlay.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 3.3.2</span> <code>.modal input</code> — Modal inputs &#x27;Display name&#x27; and &#x27;Email&#x27; have placeholder-only labels that disappear when typing.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 3.3.2</span> <code>.search-input</code> — Search field has no visible label, only placeholder &#x27;Search tasks...&#x27;.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 4.1.2</span> <code>.card-link</code> — Clickable cards behave as links but expose no role (link) to assistive technology.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 4.1.2</span> <code>.expand-btn</code> — Disclosure trigger is a &lt;div&gt; with no role=button and no aria-expanded.</div><div class='check-row'><span class='sc-tag'>03</span> <span class='sc-tag'>SC 4.1.2</span> <code>#modal-trap .modal</code> — Settings modal has no role=&quot;dialog&quot;, no aria-modal=&quot;true&quot; and no accessible name (aria-labelledby to its h3).</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.3.5</span> <code>#name</code> — &#x27;Your Name&#x27; input collects the user&#x27;s name but has no autocomplete=&quot;name&quot;.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.4.11</span> <code>.pagination-dot</code> — Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.4.11</span> <code>.star-rating button</code> — Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-field input, .form-field textarea</code> — Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary.</div><div class='check-row'><span class='sc-tag'>04</span> <span class='sc-tag'>SC 4.1.2</span> <code>.pagination-dot.active</code> — The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected.</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.3.1</span> <code>.custom-select / label (Country)</code> — The Country &lt;label&gt; has no for attribute and is not associated with the custom &lt;div&gt; select.</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.3.5</span> <code>#fullname, input[type=email], input[type=tel], #password</code> — Inputs collecting the user&#x27;s own data have no autocomplete tokens (name, email, tel, new-password).</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.4.3</span> <code>.required-star</code> — Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000).</div><div class='check-row'><span class='sc-tag'>05</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input, textarea, .custom-select-trigger</code> — Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.</div><div class='check-row'><span class='sc-tag'>06</span> <span class='sc-tag'>SC 1.2.3</span> <code>video</code> — No audio description or full media alternative (transcript) for the tutorial video.</div><div class='check-row'><span class='sc-tag'>06</span> <span class='sc-tag'>SC 1.2.5</span> <code>video</code> — No audio description track (&lt;track kind=&quot;descriptions&quot;&gt; or described version) for the tutorial video.</div><div class='check-row'><span class='sc-tag'>06</span> <span class='sc-tag'>SC 1.4.10</span> <code>video</code> — &lt;video width=&quot;600&quot; height=&quot;340&quot;&gt; is not constrained by CSS (max-width applies only to img), causing horizontal scroll at 320px viewport.</div><div class='check-row'><span class='sc-tag'>07</span> <span class='sc-tag'>SC 1.3.5</span> <code>#contact-name</code> — Name input has no autocomplete=&quot;name&quot; (name=&quot;name&quot; does not identify input purpose).</div><div class='check-row'><span class='sc-tag'>07</span> <span class='sc-tag'>SC 1.3.5</span> <code>#contact-email</code> — Email input has no autocomplete=&quot;email&quot;.</div><div class='check-row'><span class='sc-tag'>07</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input, .form-group textarea, .form-group select</code> — Field border #4a4a6a is 2.01:1 vs page background #1a1a2e and 1.88:1 vs field fill #16213e; the fill itself is 1.07:1 vs the page, so the input boundary is below 3:1. Suggested border: #6b6b85 or ligh</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 1.3.1</span> <code>.toggle-wrapper span</code> — Visible text &#x27;Email notifications&#x27; is a plain &lt;span&gt; not programmatically associated with the .toggle control (no label/aria-labelledby).</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 1.4.11</span> <code>.toggle</code> — Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker.</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 2.1.1</span> <code>.toggle</code> — Email notifications toggle is a &lt;div&gt; with onclick only; not focusable and no Space/Enter handling.</div><div class='check-row'><span class='sc-tag'>08</span> <span class='sc-tag'>SC 2.1.1</span> <code>.tab</code> — Tabs are &lt;div&gt;s with onclick only; not focusable, no Enter/Space/arrow-key support.</div><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 1.4.3</span> <code>.badge.pending</code> — Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1.</div><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 1.4.11</span> <code>.form-group input</code> — Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.</div><div class='check-row'><span class='sc-tag'>09</span> <span class='sc-tag'>SC 3.3.3</span> <code>#deadline</code> — No suggestion for correcting the Deadline error (e.g. &#x27;Enter a date as MM/DD/YYYY&#x27;).</div><div class='check-row'><span class='sc-tag'>11</span> <span class='sc-tag'>SC 1.1.1</span> <code>#captcha-img</code> — Text CAPTCHA has only a purpose description (&quot;Security check image&quot;) and no alternative form (audio or other modality) as required by the CAPTCHA exception.</div><div class='check-row'><span class='sc-tag'>11</span> <span class='sc-tag'>SC 4.1.2</span> <code>#wishlist li</code> — Draggable items expose no state or operability to assistive technology (no instructions for AT, no reorder control).</div><div class='check-row'><span class='sc-tag'>12</span> <span class='sc-tag'>SC 3.1.2</span> <code>#lang option[value=es], option[value=pt]</code> — &#x27;Español&#x27; and &#x27;Português&#x27; option texts are in other languages but have no lang attribute (lang=&quot;es&quot;, lang=&quot;pt&quot;).</div></div>
+  <section>
+    <h2>Falhas reportadas que não são reais</h2>
+    <div class='scroll'><table><thead><tr><th>Página</th><th>SC</th><th>Elemento</th><th>Nota</th></tr></thead><tbody><tr><td class='mono'>02</td><td class='mono'>1.3.1</td><td><code>body &gt; .container</code></td><td class='note'>Landmarks são boa prática; a falta de &lt;main&gt; sozinha não reprova a 1.3.1.</td></tr><tr><td class='mono'>03</td><td class='mono'>1.3.1</td><td><code>.sticky-header, .content</code></td><td class='note'>Landmarks são boa prática; a falta de &lt;header&gt;/&lt;main&gt; sozinha não reprova a 1.3.1.</td></tr></tbody></table></div>
+  </section>
 
-  <div class="section-label">Cobertura</div>
-  <h2>Critérios exercitados por falhas conhecidas</h2>
-  <p>33 dos 55 critérios WCAG 2.2 A + AA têm pelo menos uma falha conhecida na suíte. Os demais são verificados apenas quanto ao status (passa / falha / N/A) em cada página.</p>
-  <div class="sc-list" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px"><span class="sc-tag">1.1.1</span><span class="sc-tag">1.2.1</span><span class="sc-tag">1.2.2</span><span class="sc-tag">1.3.1</span><span class="sc-tag">1.3.2</span><span class="sc-tag">1.3.5</span><span class="sc-tag">1.4.1</span><span class="sc-tag">1.4.3</span><span class="sc-tag">1.4.5</span><span class="sc-tag">1.4.10</span><span class="sc-tag">1.4.11</span><span class="sc-tag">1.4.12</span><span class="sc-tag">2.1.1</span><span class="sc-tag">2.1.4</span><span class="sc-tag">2.2.1</span><span class="sc-tag">2.2.2</span><span class="sc-tag">2.4.1</span><span class="sc-tag">2.4.2</span><span class="sc-tag">2.4.3</span><span class="sc-tag">2.4.7</span><span class="sc-tag">2.4.11</span><span class="sc-tag">2.5.2</span><span class="sc-tag">2.5.7</span><span class="sc-tag">2.5.8</span><span class="sc-tag">3.1.2</span><span class="sc-tag">3.2.2</span><span class="sc-tag">3.3.1</span><span class="sc-tag">3.3.2</span><span class="sc-tag">3.3.3</span><span class="sc-tag">3.3.7</span><span class="sc-tag">3.3.8</span><span class="sc-tag">4.1.2</span><span class="sc-tag">4.1.3</span></div>
-  <p style="font-size:0.88rem;color:var(--text-dim)">Sem nenhuma falha conhecida: 1.2.3, 1.2.4, 1.2.5, 1.3.3, 1.3.4, 1.4.2, 1.4.4, 1.4.13, 2.1.2, 2.3.1, 2.4.4, 2.4.5, 2.4.6, 2.5.1, 2.5.3, 2.5.4, 3.1.1, 3.2.1, 3.2.3, 3.2.4, 3.2.6, 3.3.4</p>
+  <section>
+    <h2>Problemas reais que as páginas de teste não documentavam <span class="badge b-na">41</span></h2>
+    <details><summary>Além do gabarito</summary><div class='scroll'><table><thead><tr><th>Página</th><th>SC</th><th>Elemento</th><th>Nota</th></tr></thead><tbody><tr><td class='mono'>02</td><td class='mono'>1.3.5</td><td><code>input[type=text], input[type=email]</code></td><td class='note'>Inputs collecting the user&#x27;s name and email lack autocomplete=&quot;name&quot; and autocomplete=&quot;email&quot;.</td></tr><tr><td class='mono'>02</td><td class='mono'>1.4.3</td><td><code>footer</code></td><td class='note'>Footer text #888888 on #fefefe at 0.85rem = 3.51:1, below 4.5:1. Suggested fix: darken to ~#767676 or darker.</td></tr><tr><td class='mono'>02</td><td class='mono'>1.4.11</td><td><code>.form-group input, .form-group textarea</code></td><td class='note'>Field border #cccccc on #fefefe = 1.59:1, below 3:1.</td></tr><tr><td class='mono'>02</td><td class='mono'>1.4.11</td><td><code>.toggle</code></td><td class='note'>Off-state track #cccccc on #fefefe = 1.59:1 and white knob vs track = 1.61:1, below 3:1.</td></tr><tr><td class='mono'>02</td><td class='mono'>2.1.1</td><td><code>.toggle</code></td><td class='note'>Toggle is a &lt;div onclick&gt; with no tabindex and no keydown handler; cannot be operated by keyboard.</td></tr><tr><td class='mono'>03</td><td class='mono'>1.3.1</td><td><code>.modal input</code></td><td class='note'>Modal &#x27;Display name&#x27; and &#x27;Email&#x27; inputs have no associated &lt;label&gt;; the placeholder is the only labelling, so the field/label relationship is not programmatic.</td></tr><tr><td class='mono'>03</td><td class='mono'>1.3.5</td><td><code>.modal input[type=email], .modal input[type=text]</code></td><td class='note'>User data inputs (display name, email) have no autocomplete attribute (expected e.g. autocomplete=&quot;nickname&quot;/&quot;name&quot; and &quot;email&quot;).</td></tr><tr><td class='mono'>03</td><td class='mono'>1.4.3</td><td><code>footer</code></td><td class='note'>Footer text #888888 on #ffffff at 0.85rem is 3.54:1, below 4.5:1. Suggested fix: #767676 (4.54:1).</td></tr><tr><td class='mono'>03</td><td class='mono'>1.4.11</td><td><code>.search-input</code></td><td class='note'>Search field border #cccccc on #ffffff is 1.61:1, below 3:1 required to perceive the input boundary. Suggested: #939393 or darker.</td></tr><tr><td class='mono'>03</td><td class='mono'>1.4.11</td><td><code>.modal input</code></td><td class='note'>Modal input borders #cccccc on #ffffff are 1.61:1 (need 3:1).</td></tr><tr><td class='mono'>03</td><td class='mono'>2.4.3</td><td><code>#modal-trap</code></td><td class='note'>Opening the Settings modal does not move focus into it, and closing (Save) does not return focus to the &#x27;Open Settings&#x27; trigger; focus stays behind the overlay.</td></tr><tr><td class='mono'>03</td><td class='mono'>3.3.2</td><td><code>.modal input</code></td><td class='note'>Modal inputs &#x27;Display name&#x27; and &#x27;Email&#x27; have placeholder-only labels that disappear when typing.</td></tr><tr><td class='mono'>03</td><td class='mono'>3.3.2</td><td><code>.search-input</code></td><td class='note'>Search field has no visible label, only placeholder &#x27;Search tasks...&#x27;.</td></tr><tr><td class='mono'>03</td><td class='mono'>4.1.2</td><td><code>.card-link</code></td><td class='note'>Clickable cards behave as links but expose no role (link) to assistive technology.</td></tr><tr><td class='mono'>03</td><td class='mono'>4.1.2</td><td><code>.expand-btn</code></td><td class='note'>Disclosure trigger is a &lt;div&gt; with no role=button and no aria-expanded.</td></tr><tr><td class='mono'>03</td><td class='mono'>4.1.2</td><td><code>#modal-trap .modal</code></td><td class='note'>Settings modal has no role=&quot;dialog&quot;, no aria-modal=&quot;true&quot; and no accessible name (aria-labelledby to its h3).</td></tr><tr><td class='mono'>04</td><td class='mono'>1.3.5</td><td><code>#name</code></td><td class='note'>&#x27;Your Name&#x27; input collects the user&#x27;s name but has no autocomplete=&quot;name&quot;.</td></tr><tr><td class='mono'>04</td><td class='mono'>1.4.11</td><td><code>.pagination-dot</code></td><td class='note'>Inactive pagination dots #cccccc on #ffffff are 1.61:1 (need 3:1) -- the control itself is barely visible. Suggested: #939393 or darker.</td></tr><tr><td class='mono'>04</td><td class='mono'>1.4.11</td><td><code>.star-rating button</code></td><td class='note'>Star glyphs #ffa500 on #ffffff are 1.97:1 (need 3:1 for graphical objects). Suggested: #cc8400.</td></tr><tr><td class='mono'>04</td><td class='mono'>1.4.11</td><td><code>.form-field input, .form-field textarea</code></td><td class='note'>Form field borders #cccccc on #ffffff are 1.61:1 (need 3:1) to identify the input boundary.</td></tr><tr><td class='mono'>04</td><td class='mono'>4.1.2</td><td><code>.pagination-dot.active</code></td><td class='note'>The active dot is marked only by a CSS class; no aria-current/aria-pressed exposes which image is selected.</td></tr><tr><td class='mono'>05</td><td class='mono'>1.3.1</td><td><code>.custom-select / label (Country)</code></td><td class='note'>The Country &lt;label&gt; has no for attribute and is not associated with the custom &lt;div&gt; select.</td></tr><tr><td class='mono'>05</td><td class='mono'>1.3.5</td><td><code>#fullname, input[type=email], input[type=tel], #password</code></td><td class='note'>Inputs collecting the user&#x27;s own data have no autocomplete tokens (name, email, tel, new-password).</td></tr><tr><td class='mono'>05</td><td class='mono'>1.4.3</td><td><code>.required-star</code></td><td class='note'>Required asterisk #ff0000 on #ffffff has 4.0:1 contrast at 16px bold (not large text); needs 4.5:1 (e.g. #ee0000).</td></tr><tr><td class='mono'>05</td><td class='mono'>1.4.11</td><td><code>.form-group input, textarea, .custom-select-trigger</code></td><td class='note'>Form field borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.</td></tr><tr><td class='mono'>06</td><td class='mono'>1.2.3</td><td><code>video</code></td><td class='note'>No audio description or full media alternative (transcript) for the tutorial video.</td></tr><tr><td class='mono'>06</td><td class='mono'>1.2.5</td><td><code>video</code></td><td class='note'>No audio description track (&lt;track kind=&quot;descriptions&quot;&gt; or described version) for the tutorial video.</td></tr><tr><td class='mono'>06</td><td class='mono'>1.4.10</td><td><code>video</code></td><td class='note'>&lt;video width=&quot;600&quot; height=&quot;340&quot;&gt; is not constrained by CSS (max-width applies only to img), causing horizontal scroll at 320px viewport.</td></tr><tr><td class='mono'>07</td><td class='mono'>1.3.5</td><td><code>#contact-name</code></td><td class='note'>Name input has no autocomplete=&quot;name&quot; (name=&quot;name&quot; does not identify input purpose).</td></tr><tr><td class='mono'>07</td><td class='mono'>1.3.5</td><td><code>#contact-email</code></td><td class='note'>Email input has no autocomplete=&quot;email&quot;.</td></tr><tr><td class='mono'>07</td><td class='mono'>1.4.11</td><td><code>.form-group input, .form-group textarea, .form-group select</code></td><td class='note'>Field border #4a4a6a is 2.01:1 vs page background #1a1a2e and 1.88:1 vs field fill #16213e; the fill itself is 1.07:1 vs the page, so the input boundary is below 3:1. Suggested border: #6b6b85 or ligh</td></tr><tr><td class='mono'>08</td><td class='mono'>1.3.1</td><td><code>.toggle-wrapper span</code></td><td class='note'>Visible text &#x27;Email notifications&#x27; is a plain &lt;span&gt; not programmatically associated with the .toggle control (no label/aria-labelledby).</td></tr><tr><td class='mono'>08</td><td class='mono'>1.4.11</td><td><code>.toggle</code></td><td class='note'>Off-state toggle track #cccccc on #ffffff is 1.61:1, and the white knob on the #cccccc track is 1.61:1 (need 3:1). Suggested track: #939393 or darker.</td></tr><tr><td class='mono'>08</td><td class='mono'>2.1.1</td><td><code>.toggle</code></td><td class='note'>Email notifications toggle is a &lt;div&gt; with onclick only; not focusable and no Space/Enter handling.</td></tr><tr><td class='mono'>08</td><td class='mono'>2.1.1</td><td><code>.tab</code></td><td class='note'>Tabs are &lt;div&gt;s with onclick only; not focusable, no Enter/Space/arrow-key support.</td></tr><tr><td class='mono'>09</td><td class='mono'>1.4.3</td><td><code>.badge.pending</code></td><td class='note'>Pending badge text #e65100 on #fff3e0 has 3.46:1 contrast at 0.85rem/600; needs 4.5:1.</td></tr><tr><td class='mono'>09</td><td class='mono'>1.4.11</td><td><code>.form-group input</code></td><td class='note'>Input borders #cccccc on #ffffff have 1.61:1 contrast; field boundaries need 3:1.</td></tr><tr><td class='mono'>09</td><td class='mono'>3.3.3</td><td><code>#deadline</code></td><td class='note'>No suggestion for correcting the Deadline error (e.g. &#x27;Enter a date as MM/DD/YYYY&#x27;).</td></tr><tr><td class='mono'>11</td><td class='mono'>1.1.1</td><td><code>#captcha-img</code></td><td class='note'>Text CAPTCHA has only a purpose description (&quot;Security check image&quot;) and no alternative form (audio or other modality) as required by the CAPTCHA exception.</td></tr><tr><td class='mono'>11</td><td class='mono'>4.1.2</td><td><code>#wishlist li</code></td><td class='note'>Draggable items expose no state or operability to assistive technology (no instructions for AT, no reorder control).</td></tr><tr><td class='mono'>12</td><td class='mono'>3.1.2</td><td><code>#lang option[value=es], option[value=pt]</code></td><td class='note'>&#x27;Español&#x27; and &#x27;Português&#x27; option texts are in other languages but have no lang attribute (lang=&quot;es&quot;, lang=&quot;pt&quot;).</td></tr></tbody></table></div></details>
+  </section>
 
-  <div class="section-label">Comparação com a v1.0</div>
-  <h2>Por que os números mudaram</h2>
-  <p>O relatório da v1.0 dizia 100% (56/56), mas o auditor podia ler as respostas nos comentários das páginas, e elas documentavam 59 falhas, não 56. Na avaliação às cegas, 8 dessas 59 se mostraram erros do próprio gabarito: por exemplo, .subtitle #757575 tem 4,61:1, e não 4,48:1; o overlay rgba tem 7,09:1; o "modal trap" não prende o foco; a tabela de 900px está num contêiner com rolagem. A v1.0 "detectou" todas, inclusive uma razão de 4,48:1 que só existia no comentário. Agora elas são itens que devem passar. A v1.1 cobre os 55 critérios e tem duas páginas novas (mais 16 falhas conhecidas).</p>
+  <section>
+    <h2>Critérios exercitados por falhas conhecidas</h2>
+    <p class="sub">33 dos 55 critérios WCAG 2.2 A + AA têm pelo menos uma falha conhecida na suíte. Os demais são verificados apenas quanto ao status (passa / falha / N/A) em cada página.</p>
+    <div class="tags"><code>1.1.1</code><code>1.2.1</code><code>1.2.2</code><code>1.3.1</code><code>1.3.2</code><code>1.3.5</code><code>1.4.1</code><code>1.4.3</code><code>1.4.5</code><code>1.4.10</code><code>1.4.11</code><code>1.4.12</code><code>2.1.1</code><code>2.1.4</code><code>2.2.1</code><code>2.2.2</code><code>2.4.1</code><code>2.4.2</code><code>2.4.3</code><code>2.4.7</code><code>2.4.11</code><code>2.5.2</code><code>2.5.7</code><code>2.5.8</code><code>3.1.2</code><code>3.2.2</code><code>3.3.1</code><code>3.3.2</code><code>3.3.3</code><code>3.3.7</code><code>3.3.8</code><code>4.1.2</code><code>4.1.3</code></div>
+    <p class="sub">Sem nenhuma falha conhecida: 1.2.3, 1.2.4, 1.2.5, 1.3.3, 1.3.4, 1.4.2, 1.4.4, 1.4.13, 2.1.2, 2.3.1, 2.4.4, 2.4.5, 2.4.6, 2.5.1, 2.5.3, 2.5.4, 3.1.1, 3.2.1, 3.2.3, 3.2.4, 3.2.6, 3.3.4</p>
+  </section>
 
-  <div class="disclaimer"><strong>Limitações:</strong> a auditoria de página única é análise estática do código, sem teclado real, leitor de tela nem execução de JavaScript. Alguns nomes de classe das páginas antigas ainda dão pista do problema (por exemplo <code>.fake-h1</code>). O modo Storybook não é coberto por esta suíte.</div>
-  <footer class="footer"><p>Avaliação da Skill de Auditoria WCAG 2.2 — gerado em 2026-10-27 — 12 páginas, 67 falhas conhecidas, 98.5% de detecção</p></footer>
+  <section>
+    <h2>Por que os números mudaram</h2>
+    <p class="sub">O relatório da v1.0 dizia 100% (56/56), mas o auditor podia ler as respostas nos comentários das páginas, e elas documentavam 59 falhas, não 56. Na avaliação às cegas, 8 dessas 59 se mostraram erros do próprio gabarito: por exemplo, .subtitle #757575 tem 4,61:1, e não 4,48:1; o overlay rgba tem 7,09:1; o "modal trap" não prende o foco; a tabela de 900px está num contêiner com rolagem. A v1.0 "detectou" todas, inclusive uma razão de 4,48:1 que só existia no comentário. Agora elas são itens que devem passar. A v1.1 cobre os 55 critérios e tem duas páginas novas (mais 16 falhas conhecidas).</p>
+  </section>
+
+  <footer><p><strong>Limitações:</strong> a auditoria de página única é análise estática do código, sem teclado real, leitor de tela nem execução de JavaScript. Alguns nomes de classe das páginas antigas ainda dão pista do problema (por exemplo <code>.fake-h1</code>). O modo Storybook não é coberto por esta suíte.</p><p>Avaliação da Skill de Auditoria WCAG 2.2 — gerado em 2026-10-27 — 12 páginas, 67 falhas conhecidas, 98,5% de detecção</p></footer>
 </main>
 </body>
 </html>
